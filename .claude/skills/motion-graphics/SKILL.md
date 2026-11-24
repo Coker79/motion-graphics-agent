@@ -28,17 +28,31 @@ Shared rules:
 4. Look at your output (contact sheets) after every change; never say "looks good" without having viewed frames, and never say "sounds good" — give the user timestamps to check by ear.
 5. Final MP4: H.264, yuv420p, AAC 48 kHz, `+faststart`; verify with `probe-mp4.sh`.
 
-## Channel defaults (The Efficiency Edge)
-- **Voiceover:** always George (ElevenLabs premade, voiceId `JBFqnCBsd6RMkjVDRZzb`). Generate via the ElevenLabs API directly: `POST https://api.elevenlabs.io/v1/text-to-speech/JBFqnCBsd6RMkjVDRZzb/with-timestamps?output_format=mp3_44100_128` with `{"text":…,"model_id":"eleven_multilingual_v2"}` and header `xi-api-key: proxy-injected` (the environment proxy injects the real key; never put a key in files). Use the returned character timings for captions and avatar lip-sync. vidIQ voiceover is only a fallback.
-- **Shorts style:** 1080×1920, green `#2f3f33` background, gold `#E2B33C`, yellow `#FFD400` emphasis captions, hand-drawn 12 fps boil, timeline header, re-hook by ~5 s. Template: `shorts/ai-bubble/src.html`.
-- **Audio:** −14 LUFS / −1.5 dBTP.
-- **Publishing:** draft with `vidiq_social_post_draft_create`, show the user, publish only after they approve.
-- **Host avatar:** ElevenLabs stock avatar **"Phil"** (grey-haired man with glasses), **podcast-studio style** (olive polo, mic on boom arm, acoustic panels — the user picked this style), avatar ID `pZbecZhar6mId02mevrC`. Use it for every on-screen host, with George's voice, made in the ElevenLabs app via Image & Video → Lip sync (model "HeyGen Avatar 6", 1080p). API video generation needs the Pro plan; on Starter the user makes the clips in the app and sends the MP4s. Upload the George MP3 (Lip sync → Speech → Upload audio) so clip and captions share one audio. Composite the clip as a glowing presenter panel FIXED bottom-left (never moves or resizes); keep every on-screen element (numbers, labels, captions, key visuals) clear of it (template: `shorts/phil-test/src.html`); do not redraw the host.
-- **Look and pacing:** aiTrends-style cinematic explainers — moody gradient lighting, parallax layers, particles (rain/embers), camera tracking/push-ins, word captions; 16:9 long-form or 9:16 Shorts.
-- **Avatar gestures:** add "keep hands relaxed, no counting or number gestures with fingers" to the Lip sync motion box, then check the clip for gestures that contradict the script before using it.
-- **Subtitles:** burn word captions into the video AND produce a sentence-level `.srt` from the ElevenLabs timings; upload it to YouTube as closed captions.
-- **Starter-plan workflow (current):** Phil appears in ONE short clip per video (the hook); George narrates the rest over animated scenes. Per video: write script -> user approves -> send Phil's hook MP3 + this motion direction: "Podcast host, calm and serious delivery. Hands resting on the desk or relaxed near the mic. No pointing, no counting, no number gestures with fingers." -> user generates in ElevenLabs Lip sync and sends the MP4 -> check it with a 2 fps contact sheet for wrong gestures/glitches -> build, review, schedule 3 pm America/New_York. If the user skips the clip, make the video narration-only.
-- **Phil budget (Starter):** a Phil clip costs ~7,900 credits per 12 s; only ~4-5 per month. Default: reuse the generic intro clip `assets/phil/phil-intro.mp4` (audio `assets/phil/phil-intro.mp3`, "Welcome to The Efficiency Edge. I'm Phil. Today, we're decoding the money story behind the headlines.") at the start of every video, then George narrates. Reuse any existing Phil clip whose words match exactly. Only ask for a new Phil clip when credits allow; check `GET /v1/user/subscription` first.
-- **Music & sound (user preference from 24 Nov 2026):** use a TENSE, suspenseful score, not a flat drone: a pulsing low ostinato (sub-bass on 8th notes ~90-100 BPM), ticking clock/hi-hat pulse, rising string-like pads that build into each reveal, short silences/drops right before key lines, and impacts only on reveals. Balance: voice always on top; music bus about 14-16 dB under the voice (measure voice and bg stems with ebur128), side-chain ducking ~3-4 dB under speech, swell up in pauses. Final -14 LUFS / -1.5 dBTP.
-- **YouTube publishing (direct API, preferred over vidIQ):** `python3 tools/yt.py` (upload with --publish-at, thumbnail, update, get, me). Secrets in ~/.config/efficiency-edge/ (never in the repo). Sign-in is Google device flow (`yt.py login` -> google.com/device code); Testing-mode tokens expire after 7 days. Full sign-in (token-full.json, Desktop client + PKCE loopback code pasted by user) covers youtube + force-ssl (captions) + yt-analytics.readonly; yt.py prefers it. Commands: captions VIDEO srt, analytics --dims day|video. Re-auth: generate PKCE auth URL with redirect http://localhost:8765, user pastes the redirected URL. Shorts "Related video" link is Studio-only (user does it). Always show the user the final title/description/time and get approval before uploading.
-- **Video length (user preference):** long-form default 2.5–3 min (2–3 min fine); go longer only when the story needs it. Shorts 25–50 s, linked to their long video.
+## Channel defaults (The Efficiency Edge) — LOCKED by the user on 24 Nov 2026
+These rules override anything older in this repo. Do not deviate unless the user explicitly asks in the current conversation.
+
+### 1. Who appears and who speaks (LOCKED)
+- **Long videos:** open with the reusable Phil intro clip `assets/phil/phil-intro.mp4` (audio `assets/phil/phil-intro.mp3`: "Welcome to The Efficiency Edge. I'm Phil. Today, we're decoding the money story behind the headlines."), shown in a fixed frame that never moves or resizes. **George narrates everything after the intro.**
+- **Shorts:** George only. No Phil.
+- **Never ask the user to generate a new Phil/avatar clip** and never send Phil MP3s, unless the user explicitly asks for new Phil lines. Phil = ElevenLabs avatar "Phil", podcast-studio style, avatar ID `pZbecZhar6mId02mevrC` (API video needs Pro; on Starter the user would make clips in the app).
+- **Voice:** George (ElevenLabs voiceId `JBFqnCBsd6RMkjVDRZzb`), via `POST https://api.elevenlabs.io/v1/text-to-speech/JBFqnCBsd6RMkjVDRZzb/with-timestamps?output_format=mp3_44100_128` with `{"text":...,"model_id":"eleven_multilingual_v2"}` and header `xi-api-key: proxy-injected` (proxy injects the key; never write keys to files). Use the timings for captions/SRT. Check credits first (`GET /v1/user/subscription`).
+
+### 2. Formats and length (LOCKED)
+- Every story = one **16:9 long video (default 2.5–3 min; 2–3 fine; longer only if the story needs it)** + one **9:16 Short (25–50 s)** made from the same story.
+- Long video goes live first; the Short 1–2 days later. The user links the Short to the long video in Studio ("Related video", Studio-only); add "Full story: <link>" to the Short's description via `tools/yt.py update`.
+
+### 3. Look and sound (LOCKED)
+- Visual style: documentary "case file" look (aged paper, typewriter text, case folders, newspaper clippings with red highlights, polaroids, red-string maps, hand-drawn charts with red circles, stamps) — template `videos/fed-strong-dollar/src.html`. Cinematic variant: `videos/too-big-to-fire-long/`. No real photos of people (copyright): use illustrations/silhouettes.
+- Word-by-word captions with yellow emphasis; keep everything clear of the Phil frame.
+- Music: TENSE score — pulsing sub-bass ostinato on 8ths (~96 BPM), clock-tick pulse, rising string pads into reveals, short drops before key lines, impacts only on reveals. Voice always on top: background stem 14–16 dB under voice (measure stems with ebur128). Final −14 LUFS / −1.5 dBTP.
+- Facts first: only sourced claims; allegations labelled as reported; no buy/sell advice; disclaimer in description.
+
+### 4. Workflow and approvals (LOCKED)
+1. Find topic (web search + vidIQ trends if credits allow) → propose to user.
+2. Write script → **user approves**.
+3. George narration → build → check stills → render both formats → send to user → **user approves**.
+4. Thumbnail (Phil frame with eyes open + bold headline, checked at 320×180) and sentence-level `.srt`.
+5. Show final title/description/tags/time → **user approves** → upload + schedule with `tools/yt.py` (upload --publish-at, thumbnail, captions). Default publish time **3:00 pm America/New_York**.
+
+### 5. YouTube connection
+- `python3 tools/yt.py` (me, upload, thumbnail, captions, update, get, analytics). Secrets in ~/.config/efficiency-edge/ (never in the repo). Full sign-in `token-full.json` (Desktop client + PKCE; user pastes the localhost redirect URL) covers upload, captions and analytics. Testing-mode sign-ins can expire after ~7 days: re-auth by generating a new PKCE URL (redirect http://localhost:8765). vidIQ is now only for trend research (credits are scarce).
