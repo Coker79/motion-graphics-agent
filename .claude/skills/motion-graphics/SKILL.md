@@ -13,6 +13,7 @@ Pick ONE primary skill, then layer the support skills.
 | 45–90 s calm product demo / feature walkthrough | `explainer-default` |
 | 10–30 s one-take story / loopable product animation | `explainer-engaging` |
 | Animated maps (countries, routes, pins) — combine with director | `map-animation` |
+| Stickman / stick-figure explainers, faceless story videos (styles B1–B7, A1–A8) | `directing-stickman-videos` (submodule `vendor/stickman-video-director`) — still follow the LOCKED channel rules below for voice, intro, length, sound and approvals |
 | B-roll / cutaways for a talking-head video + transcript | `motion-broll` |
 | Anything else, or a full production (VO script, storyboard, 2D/3D, editing raw footage, captions, multi-format) | `motion-video-director` |
 
