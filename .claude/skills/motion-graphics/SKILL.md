@@ -14,7 +14,7 @@ Pick ONE primary skill, then layer the support skills.
 | 10–30 s one-take story / loopable product animation | `explainer-engaging` |
 | Animated maps (countries, routes, pins) — combine with director | `map-animation` |
 | Stickman / stick-figure explainers, faceless story videos (styles B1–B7, A1–A8) | `directing-stickman-videos` (submodule `vendor/stickman-video-director`) — still follow the LOCKED channel rules below for voice, intro, length, sound and approvals |
-| 3D "toy family" or 3D diorama Short (45–60 s) rendered in Blender | `make-short` (v2.3.0). Needs Blender + ffmpeg (its installer supports Apple Silicon Mac and Windows only, not this Linux cloud) and Higgsfield for its default voice/music. **Locked channel rules win:** use George (ElevenLabs) for voice and our own score instead of Higgsfield audio; Phil intro first |
+| 3D "toy family" or 3D diorama Short (45–60 s) rendered in Blender | `make-short` (v2.3.0). Needs Blender + ffmpeg (its installer supports Apple Silicon Mac and Windows only, not this Linux cloud) and Higgsfield for its default voice/music. **Not the standard route** (hybrid style is locked as standard); only if the user explicitly asks, and ideally on their Mac. Locked channel rules still win: use George (ElevenLabs) for voice and our own score instead of Higgsfield audio; Phil intro first |
 | B-roll / cutaways for a talking-head video + transcript | `motion-broll` |
 | Anything else, or a full production (VO script, storyboard, 2D/3D, editing raw footage, captions, multi-format) | `motion-video-director` |
 
@@ -44,6 +44,7 @@ These rules override anything older in this repo. Do not deviate unless the user
 - Long video goes live first; the Short 1–2 days later. The user links the Short to the long video in Studio ("Related video", Studio-only); add "Full story: <link>" to the Short's description via `tools/yt.py update`.
 
 ### 3. Look and sound (LOCKED)
+- **Standard production route (LOCKED 24 Nov 2026):** every video is made with the code-drawn **hybrid** style (stickman + documentary case file), rendered here in the browser renderer (Playwright + ffmpeg). Templates: Short `videos/fed-strong-dollar/stickman/src.html`, long `videos/fed-strong-dollar/src.html`. Do **not** use `make-short`/Blender (too slow on this CPU-only cloud machine) or paid image/video generators unless the user explicitly asks for that specific video.
 - Visual style (house style): **hybrid** — B1-style stickman characters (slender, expressive, hand-drawn, Caveat hand lettering) acting out the story INSIDE the documentary world, plus documentary "case file" props: (aged paper, typewriter text, case folders, newspaper clippings with red highlights, polaroids, red-string maps, hand-drawn charts with red circles, stamps) — template `videos/fed-strong-dollar/src.html`. Cinematic variant: `videos/too-big-to-fire-long/`. No real photos of people (copyright): use illustrations/silhouettes.
 - Word-by-word captions with yellow emphasis; keep everything clear of the Phil frame.
 - Music: TENSE score — pulsing sub-bass ostinato on 8ths (~96 BPM), clock-tick pulse, rising string pads into reveals, short drops before key lines, impacts only on reveals. Voice always on top: background stem 14–16 dB under voice (measure stems with ebur128). Final −14 LUFS / −1.5 dBTP.
