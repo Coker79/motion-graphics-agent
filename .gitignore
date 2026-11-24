@@ -1,3 +1,7 @@
 node_modules/
-demo/check*.png
-demo/demo_silent.mp4
+**/check*.png
+**/*_silent.mp4
+**/*_seg*
+**/*.pcm
+**/render.log
+shorts/*/short.html
