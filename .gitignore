@@ -40,3 +40,5 @@ shorts/*/short.mp4
 **/*_raw*.mp4
 **/render_*.log
 videos/*/*.mp4
+**/v*.png
+**/q.png
