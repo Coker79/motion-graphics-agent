@@ -107,7 +107,7 @@ function scene(t){if(t<T1){intro(t);return;}const u=t-VO;
   figure({x:230,y:1290,s:1.45,hat:'top',tag:'USA',face:'smug',armR:[lerp(1.2,2.6,throwK),-.4],lean:-.05});
   const c=figure({x:830,y:1290,s:1.45,tag:'THE WORLD',tagCol:'#e6f0ff',face:fly>.9?'shock':'neutral',armL:[lerp(-.4,-2.4,fly),.3],armR:[lerp(.4,-2.2,fly),-.3],look:-1});
   const bx=lerp(360,c.hl[0]+30,fly),by=lerp(860,c.hl[1]-20,fly)-Math.sin(fly*Math.PI)*260;bill(bx,by,150,190,'BILL','#fff',fly*6.28*1.5);}
- else{const v=u-21.4;hand('Full story',W/2,420,96);hand('linked below',W/2,520,96,RED);
+ else{const v=u-21.4;hand('Follow for the',W/2,420,90);hand('next case file',W/2,520,90,RED);
   const b=8*Math.sin(v*6),AX=W/2+220;figure({x:W/2-80,y:1300,s:1.55,face:'point',reachR:[AX-40,1250+b],armL:[-.3,.2]});ln(AX,1180+b,AX,1400+b,7,RED,95);ln(AX,1400+b,AX-34,1360+b,7,RED,96);ln(AX,1400+b,AX+34,1360+b,7,RED,97);}}
 
 // ---------- captions (Hand, single line, timed to George) ----------

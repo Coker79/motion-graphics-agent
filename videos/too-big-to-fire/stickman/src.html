@@ -103,7 +103,7 @@ function scene(t){if(t<T1){intro(t);return;}const u=t-VO,v=t-B;
   const k=ease(seg(w,.8,2.6));figure({x:lerp(220,450,k),y:1300,s:1.45,hat:'top',tag:'WASHINGTON',face:'strain',armR:[1.2,-.4]});bill(lerp(330,560,k),1120,170,120,'$700B');stampTxt(w,3.6,'TOO BIG TO FAIL',W/2,600,70);}
  else if(v<35.2){const w=v-32;hand('Now the question isn\'t',W/2,380,70);hand('TOO BIG TO FAIL',W/2,700,84,INK);ln(W/2-330,680,W/2-330+660*ease(seg(w,1.2,2)),680,9,RED,9);board(w,'neutral',[[-.3,.2],[.3,-.2]],0);}
  else{const w=v-35.2;hand('It\'s whether its leader is',W/2,380,64);stampTxt(w,.9,'TOO BIG TO FIRE?',W/2,640,92);[260,820].forEach((X,i)=>figure({x:X,y:1300,s:1.25,face:'worry',look:i?-1:1}));figure({x:W/2,y:1220,s:1.6,tag:'CEO',face:'smug',armL:[-2.4,.3],armR:[2.4,-.3]});
-  if(w>2.6){hand('Full story linked below',W/2,1500,60,RED);}}}
+  if(w>2.6){hand('Follow for the next case file',W/2,1500,56,RED);}}}
 
 // ---------- captions (Hand, single line, timed to George) ----------
 const AL=__ALIGN__,AL2=__ALIGN2__,ALI=__ALIGN_INTRO__;const WORDS=[];{let c2='',s2=null;ALI.characters.forEach((ch,i)=>{if(ch===' '){if(c2)WORDS.push({w:c2,t:s2});c2='';s2=null;}else{if(s2===null)s2=ALI.character_start_times_seconds[i];c2+=ch;}});if(c2)WORDS.push({w:c2,t:s2});}{let cur='',st=null;AL.characters.forEach((ch,i)=>{if(ch===' '){if(cur)WORDS.push({w:cur,t:st+VO});cur='';st=null;}else{if(st===null)st=AL.character_start_times_seconds[i];cur+=ch;}});if(cur)WORDS.push({w:cur,t:st+VO});}{let cur='',st=null;AL2.characters.forEach((ch,i)=>{if(ch===' '){if(cur)WORDS.push({w:cur,t:st+B});cur='';st=null;}else{if(st===null)st=AL2.character_start_times_seconds[i];cur+=ch;}});if(cur)WORDS.push({w:cur,t:st+B});}

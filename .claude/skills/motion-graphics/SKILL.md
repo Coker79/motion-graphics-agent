@@ -43,7 +43,8 @@ These rules override anything older in this repo. Do not deviate unless the user
 
 ### 2. Formats and length (LOCKED)
 - Every story = one **16:9 long video (default 2.5–3 min; 2–3 fine; longer only if the story needs it)** + one **9:16 Short (25–50 s)** made from the same story.
-- Long video goes live first; the Short 1–2 days later. The user links the Short to the long video in Studio ("Related video", Studio-only); add "Full story: <link>" to the Short's description via `tools/yt.py update`.
+- **Current phase: Shorts first, one per day at 3 pm NY (30–45 s); long videos paused until the user resumes them.** End card: "Follow for the next case file".
+- When long videos resume: long video goes live first; the Short 1–2 days later. The user links the Short to the long video in Studio ("Related video", Studio-only); add "Full story: <link>" to the Short's description via `tools/yt.py update`.
 
 ### 3. Look and sound (LOCKED)
 - **Standard production route (LOCKED 24 Nov 2026):** every video is made with the code-drawn **hybrid** style (stickman + documentary case file), rendered here in the browser renderer (Playwright + ffmpeg). Templates: Short `videos/fed-strong-dollar/stickman/src.html`, long `videos/fed-strong-dollar/src.html`. Do **not** use `make-short`/Blender (too slow on this CPU-only cloud machine) or paid image/video generators unless the user explicitly asks for that specific video.
