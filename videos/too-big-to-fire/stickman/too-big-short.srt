@@ -1,0 +1,140 @@
+1
+00:00:00,000 --> 00:00:01,950
+Welcome to The Efficiency Edge.
+
+2
+00:00:01,950 --> 00:00:03,005
+I'm Phil.
+
+3
+00:00:03,088 --> 00:00:03,483
+Today,
+
+4
+00:00:03,483 --> 00:00:05,283
+we're decoding the money story behind
+
+5
+00:00:05,283 --> 00:00:06,616
+the headlines.
+
+6
+00:00:07,150 --> 00:00:08,508
+On November seventeenth,
+
+7
+00:00:08,508 --> 00:00:09,994
+Nvidia's board said it would not
+
+8
+00:00:09,994 --> 00:00:11,827
+bring Jensen Huang back.
+
+9
+00:00:11,968 --> 00:00:13,059
+Six days later,
+
+10
+00:00:13,059 --> 00:00:15,809
+it voted unanimously to reinstate him.
+
+11
+00:00:15,850 --> 00:00:17,207
+What changed?
+
+12
+00:00:17,348 --> 00:00:19,633
+President Trump says he called Huang,
+
+13
+00:00:19,658 --> 00:00:21,260
+then convinced the board.
+
+14
+00:00:21,260 --> 00:00:22,874
+Why would a president care about
+
+15
+00:00:22,874 --> 00:00:24,244
+one CEO?
+
+16
+00:00:24,244 --> 00:00:26,090
+Because Nvidia is worth around four
+
+17
+00:00:26,090 --> 00:00:27,400
+trillion dollars.
+
+18
+00:00:27,704 --> 00:00:29,376
+That's more than the yearly output
+
+19
+00:00:29,376 --> 00:00:30,536
+of all but a handful of
+
+20
+00:00:30,536 --> 00:00:31,568
+countries.
+
+21
+00:00:31,709 --> 00:00:33,207
+We've seen this before.
+
+22
+00:00:33,207 --> 00:00:34,321
+In 1907,
+
+23
+00:00:34,321 --> 00:00:35,935
+when Wall Street panicked,
+
+24
+00:00:35,935 --> 00:00:36,353
+J.P.
+
+25
+00:00:36,353 --> 00:00:38,420
+Morgan locked bankers in his library
+
+26
+00:00:38,420 --> 00:00:39,731
+until they agreed to save the
+
+27
+00:00:39,731 --> 00:00:40,635
+system.
+
+28
+00:00:40,846 --> 00:00:42,088
+In 2008,
+
+29
+00:00:42,088 --> 00:00:44,306
+Washington set aside seven hundred billion
+
+30
+00:00:44,306 --> 00:00:46,245
+dollars to rescue banks it called
+
+31
+00:00:46,245 --> 00:00:47,682
+too big to fail.
+
+32
+00:00:47,893 --> 00:00:49,240
+Now the question isn't whether a
+
+33
+00:00:49,240 --> 00:00:51,040
+company is too big to fail.
+
+34
+00:00:51,040 --> 00:00:52,317
+It's whether its leader is too
+
+35
+00:00:52,317 --> 00:00:53,673
+big to fire.
+

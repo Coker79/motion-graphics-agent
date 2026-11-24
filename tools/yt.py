@@ -13,6 +13,7 @@ Usage:
   yt.py captions VIDEO_ID subs.srt [--lang en] [--name English]
   yt.py update VIDEO_ID [--title T] [--desc-file D.txt] [--tags a,b] [--publish-at ISO]
   yt.py get VIDEO_ID
+  yt.py delete VIDEO_ID --yes
 """
 import argparse, json, os, sys, time, urllib.parse, urllib.request, uuid
 
@@ -114,6 +115,7 @@ def main():
     c = s.add_parser('captions'); c.add_argument('video'); c.add_argument('srt'); c.add_argument('--lang', default='en'); c.add_argument('--name', default='English')
     up = s.add_parser('update'); up.add_argument('video'); up.add_argument('--title'); up.add_argument('--desc-file'); up.add_argument('--tags'); up.add_argument('--publish-at')
     g = s.add_parser('get'); g.add_argument('video')
+    de = s.add_parser('delete'); de.add_argument('video'); de.add_argument('--yes', action='store_true')
     an = s.add_parser('analytics'); an.add_argument('--start', default='2026-10-25'); an.add_argument('--end', default='2026-11-23'); an.add_argument('--dims', default='video'); an.add_argument('--metrics', default='views,estimatedMinutesWatched,averageViewPercentage,subscribersGained')
     a = p.parse_args()
     if a.cmd == 'login': return login()
@@ -137,6 +139,9 @@ def main():
     elif a.cmd == 'get':
         d, _ = req('GET', f'/youtube/v3/videos?part=snippet,status&id={a.video}')
         i = d['items'][0]; print(json.dumps({'title': i['snippet']['title'], 'status': i['status']}, indent=1))
+    elif a.cmd == 'delete':
+        if not a.yes: raise SystemExit('refusing without --yes')
+        req('DELETE', f'/youtube/v3/videos?id={a.video}'); print('deleted:', a.video)
     elif a.cmd == 'update':
         d, _ = req('GET', f'/youtube/v3/videos?part=snippet,status&id={a.video}'); i = d['items'][0]
         sn, st = i['snippet'], i['status']
