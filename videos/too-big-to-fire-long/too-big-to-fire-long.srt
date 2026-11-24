@@ -1,0 +1,351 @@
+1
+00:00:00,000 --> 00:00:01,930
+Welcome to The Efficiency Edge.
+
+2
+00:00:01,950 --> 00:00:03,005
+I'm Phil.
+
+3
+00:00:03,088 --> 00:00:06,580
+Today, we're decoding the money story behind the headlines.
+
+4
+00:00:06,600 --> 00:00:09,773
+On November seventeenth, Nvidia's board said it would not bring
+
+5
+00:00:09,793 --> 00:00:11,335
+Jensen Huang back.
+
+6
+00:00:11,546 --> 00:00:15,380
+Six days later, it voted unanimously to reinstate him.
+
+7
+00:00:15,400 --> 00:00:17,957
+To understand why, you have to go back more than
+
+8
+00:00:17,977 --> 00:00:19,415
+a hundred years.
+
+9
+00:00:19,500 --> 00:00:21,860
+Let's start with the eleven days that shook the most
+
+10
+00:00:21,880 --> 00:00:24,038
+valuable chip company on Earth.
+
+11
+00:00:24,550 --> 00:00:26,899
+On November twelfth, Jensen Huang,
+
+12
+00:00:26,919 --> 00:00:28,315
+the man who built Nvidia,
+
+13
+00:00:28,335 --> 00:00:30,098
+resigned as CEO.
+
+14
+00:00:30,181 --> 00:00:32,483
+It followed reports about his private life,
+
+15
+00:00:32,503 --> 00:00:35,792
+including a relationship that reportedly caught the attention of U.S.
+
+16
+00:00:35,812 --> 00:00:37,006
+intelligence.
+
+17
+00:00:37,309 --> 00:00:39,426
+The finance chief, Colette Kress,
+
+18
+00:00:39,446 --> 00:00:41,708
+stepped in as interim CEO.
+
+19
+00:00:42,011 --> 00:00:43,280
+Markets panicked.
+
+20
+00:00:43,300 --> 00:00:46,055
+That day the stock fell as much as fourteen percent
+
+21
+00:00:46,075 --> 00:00:48,082
+before recovering some ground.
+
+22
+00:00:48,223 --> 00:00:51,523
+The next day, Nvidia closed below four trillion dollars in
+
+23
+00:00:51,543 --> 00:00:54,804
+value for the first time since July of last year.
+
+24
+00:00:54,945 --> 00:00:57,735
+On November seventeenth, the board said it did not intend
+
+25
+00:00:57,755 --> 00:00:59,192
+to bring Huang back.
+
+26
+00:00:59,589 --> 00:01:01,723
+Huang said he was open to returning.
+
+27
+00:01:01,865 --> 00:01:04,847
+Then, on November twenty-third, everything flipped.
+
+28
+00:01:04,988 --> 00:01:08,585
+The board voted unanimously to reinstate him as CEO.
+
+29
+00:01:08,796 --> 00:01:10,059
+What changed?
+
+30
+00:01:10,270 --> 00:01:13,299
+President Trump says he spoke to Huang that Sunday night,
+
+31
+00:01:13,324 --> 00:01:15,052
+and then convinced the board.
+
+32
+00:01:15,263 --> 00:01:19,086
+Nvidia's board says an independent committee is still investigating,
+
+33
+00:01:19,106 --> 00:01:22,511
+and members of Congress, including Senator Elizabeth Warren,
+
+34
+00:01:22,531 --> 00:01:25,013
+say the company still owes them answers.
+
+35
+00:01:25,410 --> 00:01:28,014
+So why would a president get involved with one company's
+
+36
+00:01:28,034 --> 00:01:28,973
+boardroom?
+
+37
+00:01:29,369 --> 00:01:32,008
+Because Nvidia is no longer just a company.
+
+38
+00:01:32,028 --> 00:01:34,295
+It's worth around four trillion dollars,
+
+39
+00:01:34,315 --> 00:01:36,640
+more than the yearly output of all but a handful
+
+40
+00:01:36,660 --> 00:01:37,773
+of countries.
+
+41
+00:01:37,914 --> 00:01:39,949
+Its chips power the AI boom,
+
+42
+00:01:39,969 --> 00:01:42,259
+and a growing share of the stock market rides on
+
+43
+00:01:42,279 --> 00:01:42,881
+it.
+
+44
+00:01:43,022 --> 00:01:46,062
+When Nvidia shakes, retirement accounts shake.
+
+45
+00:01:46,366 --> 00:01:48,593
+We've seen this kind of power before.
+
+46
+00:01:48,990 --> 00:01:50,711
+October, nineteen oh seven.
+
+47
+00:01:50,731 --> 00:01:53,590
+A failed bet on copper shares sparked a run on
+
+48
+00:01:53,610 --> 00:01:55,362
+New York's trust companies.
+
+49
+00:01:55,573 --> 00:01:57,724
+People lined up around the block to pull out their
+
+50
+00:01:57,744 --> 00:01:58,520
+money.
+
+51
+00:01:58,823 --> 00:02:01,503
+America had no central bank to stop it.
+
+52
+00:02:01,807 --> 00:02:03,976
+So the country turned to one man:
+
+53
+00:02:04,059 --> 00:02:04,515
+J.P.
+
+54
+00:02:04,535 --> 00:02:05,439
+Morgan.
+
+55
+00:02:05,650 --> 00:02:08,196
+In early November, he gathered the heads of the trust
+
+56
+00:02:08,216 --> 00:02:10,274
+companies in his private library,
+
+57
+00:02:10,294 --> 00:02:11,859
+and the doors were locked.
+
+58
+00:02:12,000 --> 00:02:14,534
+He kept them there through the night until they agreed
+
+59
+00:02:14,554 --> 00:02:16,038
+to a rescue fund.
+
+60
+00:02:16,342 --> 00:02:17,669
+The panic eased.
+
+61
+00:02:17,689 --> 00:02:20,595
+But Congress was alarmed that the whole system had depended
+
+62
+00:02:20,615 --> 00:02:21,936
+on one banker.
+
+63
+00:02:22,078 --> 00:02:25,303
+Six years later, it created the Federal Reserve.
+
+64
+00:02:25,700 --> 00:02:27,858
+Fast forward a hundred years.
+
+65
+00:02:28,161 --> 00:02:30,145
+September, two thousand eight.
+
+66
+00:02:30,356 --> 00:02:33,988
+Lehman Brothers collapses, and the financial system freezes.
+
+67
+00:02:34,129 --> 00:02:37,905
+Within weeks, Washington sets aside seven hundred billion dollars to
+
+68
+00:02:37,925 --> 00:02:40,838
+rescue banks it decided were too big to fail.
+
+69
+00:02:41,049 --> 00:02:43,815
+Two years later came the Dodd-Frank reforms,
+
+70
+00:02:43,835 --> 00:02:46,120
+meant to make sure it never happened again.
+
+71
+00:02:46,517 --> 00:02:47,751
+Notice the pattern.
+
+72
+00:02:47,771 --> 00:02:51,269
+First, one institution becomes so central that its failure feels
+
+73
+00:02:51,289 --> 00:02:52,889
+like everyone's failure.
+
+74
+00:02:52,972 --> 00:02:55,536
+Then, the normal rules bend to save it.
+
+75
+00:02:55,620 --> 00:02:58,172
+And only afterwards do we write new rules.
+
+76
+00:02:58,313 --> 00:03:00,534
+In nineteen oh seven, it was a banker.
+
+77
+00:03:00,554 --> 00:03:02,705
+In two thousand eight, it was the banks.
+
+78
+00:03:02,725 --> 00:03:05,445
+In twenty twenty-six, it may be a single company,
+
+79
+00:03:05,465 --> 00:03:07,263
+and the person running it.
+
+80
+00:03:07,400 --> 00:03:10,004
+So the question isn't whether Nvidia is too big to
+
+81
+00:03:10,024 --> 00:03:10,835
+fail.
+
+82
+00:03:11,046 --> 00:03:13,475
+The question is whether its leader has become too big
+
+83
+00:03:13,495 --> 00:03:14,492
+to fire.
+
+84
+00:03:14,633 --> 00:03:16,993
+And if he has, what new rules will we write
+
+85
+00:03:17,013 --> 00:03:17,986
+next time?
+
+86
+00:03:18,128 --> 00:03:20,023
+Tell me what you think in the comments.
+
+87
+00:03:20,043 --> 00:03:23,344
+And subscribe, because the money story behind AI is only
+
+88
+00:03:23,364 --> 00:03:24,976
+just getting started.
