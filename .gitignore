@@ -6,3 +6,4 @@ node_modules/
 **/render.log
 shorts/*/short.html
 shorts/*/short.mp4
+**/short_raw*.mp4
