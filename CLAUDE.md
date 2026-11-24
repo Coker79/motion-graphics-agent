@@ -2,4 +2,4 @@
 
 Start every video request with the `motion-graphics` skill. Channel defaults (voice, style, loudness, publishing flow) live in `.claude/skills/motion-graphics/SKILL.md` → "Channel defaults".
 
-Default voiceover voice: vidIQ "George – Warm, Captivating Storyteller", voiceId `JBFqnCBsd6RMkjVDRZzb`.
+Default voiceover voice: George (ElevenLabs voiceId `JBFqnCBsd6RMkjVDRZzb`), generated via the ElevenLabs API with timestamps — see Channel defaults.

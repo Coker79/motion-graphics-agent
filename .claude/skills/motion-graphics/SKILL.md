@@ -29,7 +29,7 @@ Shared rules:
 5. Final MP4: H.264, yuv420p, AAC 48 kHz, `+faststart`; verify with `probe-mp4.sh`.
 
 ## Channel defaults (The Efficiency Edge)
-- **Voiceover:** always use vidIQ voice **George – Warm, Captivating Storyteller** (British), voiceId `JBFqnCBsd6RMkjVDRZzb`, via `vidiq_voiceover_generate` (use `scriptLines`, one per sentence, to get timings). Only change it if the user asks.
+- **Voiceover:** always George (ElevenLabs premade, voiceId `JBFqnCBsd6RMkjVDRZzb`). Generate via the ElevenLabs API directly: `POST https://api.elevenlabs.io/v1/text-to-speech/JBFqnCBsd6RMkjVDRZzb/with-timestamps?output_format=mp3_44100_128` with `{"text":…,"model_id":"eleven_multilingual_v2"}` and header `xi-api-key: proxy-injected` (the environment proxy injects the real key; never put a key in files). Use the returned character timings for captions and avatar lip-sync. vidIQ voiceover is only a fallback.
 - **Shorts style:** 1080×1920, green `#2f3f33` background, gold `#E2B33C`, yellow `#FFD400` emphasis captions, hand-drawn 12 fps boil, timeline header, re-hook by ~5 s. Template: `shorts/ai-bubble/src.html`.
 - **Audio:** −14 LUFS / −1.5 dBTP.
 - **Publishing:** draft with `vidiq_social_post_draft_create`, show the user, publish only after they approve.
