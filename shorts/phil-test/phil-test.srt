@@ -1,0 +1,23 @@
+1
+00:00:00,400 --> 00:00:01,425
+Wall Street.
+
+2
+00:00:01,445 --> 00:00:03,591
+November, twenty twenty-six.
+
+3
+00:00:03,895 --> 00:00:05,976
+One company is now worth four trillion
+
+4
+00:00:05,996 --> 00:00:06,661
+dollars.
+
+5
+00:00:06,681 --> 00:00:09,071
+And everyone is asking the same question:
+
+6
+00:00:09,212 --> 00:00:11,103
+what happens if it falls?
