@@ -1,0 +1,112 @@
+{
+ "name": "recruit",
+ "_source": "example-hardtack/design/recruit_sheet.png (Higgsfield nano_banana_2_1); measured off the front view with tools/grid.py; head 290 px = 0.42 m",
+ "skin": "#F1EEF7",
+ "head": {
+  "w": 0.42,
+  "h": 0.5,
+  "d": 0.4,
+  "egg": 0.06,
+  "z": 0.923
+ },
+ "face": {
+  "eyes": {
+   "x": 0.19,
+   "z": -0.03,
+   "rx": 0.097,
+   "rz": 0.1,
+   "pupil": [
+    0.28,
+    0.28
+   ],
+   "line": 0.013,
+   "lid_weight": 1.3
+  },
+  "brows": {
+   "x_in": 0.1,
+   "len": 0.22,
+   "z": 0.16,
+   "thick": 0.055,
+   "taper": 0.85,
+   "line": 0.009,
+   "color": "#3A3437"
+  },
+  "mouth": {
+   "z": -0.27,
+   "w": 0.16,
+   "h": 0.14,
+   "line": 0.013
+  },
+  "freckles": []
+ },
+ "body": {
+  "kind": "bean",
+  "color": "#3F63B0",
+  "z0": 0.311,
+  "z1": 0.68,
+  "top_r": 0.085,
+  "bot_r": 0.152,
+  "widest": 0.38,
+  "depth": 0.86,
+  "rough": 0.7,
+  "gloss": 0.0,
+  "neck": false,
+  "seam": false,
+  "buttons": {
+   "kind": "round",
+   "color": "#F2C230",
+   "zs": [
+    0.87,
+    0.73,
+    0.58,
+    0.43
+   ]
+  },
+  "belt": {
+   "color": "#D0322C",
+   "z": 0.33,
+   "h": 0.05,
+   "knot": true
+  }
+ },
+ "arms": {
+  "style": "stick",
+  "r": 0.0116,
+  "len": 0.33,
+  "angle": 36,
+  "shoulder": [
+   0.105,
+   0.62
+  ],
+  "hand": {
+   "r": 0.043,
+   "color": "#2A2627"
+  }
+ },
+ "legs": {
+  "color": "#2A2627",
+  "r": 0.013,
+  "hip_x": 0.071,
+  "z_hip": 0.34,
+  "z_ankle": 0.01
+ },
+ "feet": {
+  "kind": "round",
+  "color": "#2A2627",
+  "h": 0.05,
+  "r": 0.04
+ },
+ "hat": {
+  "kind": "kepi",
+  "color": "#262C52",
+  "band": "#F2C21E",
+  "visor": "#1E1B22",
+  "band_z": 0.17,
+  "band_h": 0.14,
+  "crown_h": 0.2,
+  "taper": 0.86,
+  "slope": 4,
+  "tilt": 3,
+  "visor_len": 0.14
+ }
+}

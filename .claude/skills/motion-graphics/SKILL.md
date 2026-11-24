@@ -14,6 +14,7 @@ Pick ONE primary skill, then layer the support skills.
 | 10–30 s one-take story / loopable product animation | `explainer-engaging` |
 | Animated maps (countries, routes, pins) — combine with director | `map-animation` |
 | Stickman / stick-figure explainers, faceless story videos (styles B1–B7, A1–A8) | `directing-stickman-videos` (submodule `vendor/stickman-video-director`) — still follow the LOCKED channel rules below for voice, intro, length, sound and approvals |
+| 3D "toy family" or 3D diorama Short (45–60 s) rendered in Blender | `make-short` (v2.3.0). Needs Blender + ffmpeg (its installer supports Apple Silicon Mac and Windows only, not this Linux cloud) and Higgsfield for its default voice/music. **Locked channel rules win:** use George (ElevenLabs) for voice and our own score instead of Higgsfield audio; Phil intro first |
 | B-roll / cutaways for a talking-head video + transcript | `motion-broll` |
 | Anything else, or a full production (VO script, storyboard, 2D/3D, editing raw footage, captions, multi-format) | `motion-video-director` |
 

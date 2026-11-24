@@ -1,0 +1,118 @@
+{
+ "name": "cook",
+ "_source": "example-hardtack/design/cook_sheet.png (Higgsfield nano_banana_2_1); measured off the front view with tools/grid.py; head 267 px = 0.42 m",
+ "skin": "#F2EEF7",
+ "head": {
+  "w": 0.42,
+  "h": 0.5,
+  "d": 0.4,
+  "egg": 0.06,
+  "z": 0.835
+ },
+ "face": {
+  "eyes": {
+   "x": 0.21,
+   "z": 0.0,
+   "rx": 0.11,
+   "rz": 0.095,
+   "pupil": [
+    0.25,
+    0.32
+   ],
+   "line": 0.013,
+   "lid_weight": 1.3
+  },
+  "brows": {
+   "x_in": 0.08,
+   "len": 0.24,
+   "z": 0.18,
+   "thick": 0.075,
+   "taper": 0.85,
+   "line": 0.009,
+   "color": "#3A3030"
+  },
+  "mouth": {
+   "z": -0.33,
+   "w": 0.18,
+   "h": 0.14,
+   "line": 0.013
+  },
+  "freckles": [],
+  "blush": {
+   "x": 0.34,
+   "z": -0.15,
+   "r": 0.075,
+   "color": "#F4A3AA"
+  }
+ },
+ "body": {
+  "kind": "bean",
+  "color": "#5E7090",
+  "z0": 0.137,
+  "z1": 0.6,
+  "top_r": 0.09,
+  "bot_r": 0.164,
+  "widest": 0.4,
+  "depth": 0.86,
+  "rough": 0.75,
+  "gloss": 0.0,
+  "neck": false,
+  "seam": false,
+  "buttons": {
+   "kind": "none"
+  },
+  "apron": {
+   "color": "#F7F2EA",
+   "top": 0.88,
+   "waist": 0.58,
+   "bib": 0.073
+  }
+ },
+ "arms": {
+  "style": "stick",
+  "r": 0.012,
+  "len": 0.32,
+  "angle": 36,
+  "shoulder": [
+   0.115,
+   0.538
+  ],
+  "hand": {
+   "r": 0.047,
+   "color": "#2A2627"
+  }
+ },
+ "legs": {
+  "color": "#2A2627",
+  "r": 0.013,
+  "hip_x": 0.066,
+  "z_hip": 0.16,
+  "z_ankle": 0.01
+ },
+ "feet": {
+  "kind": "round",
+  "color": "#2A2627",
+  "h": 0.05,
+  "r": 0.047
+ },
+ "hat": {
+  "kind": "toque",
+  "color": "#F8F5EE",
+  "band_z": 0.34,
+  "band_h": 0.36,
+  "min_r": 0.36,
+  "puff_h": 0.55,
+  "puff_r": 0.5,
+  "flare": 0.03,
+  "tilt": 0,
+  "pleats": 16
+ },
+ "facial_hair": {
+  "style": "handlebar",
+  "z": -0.195,
+  "span": 0.62,
+  "thick": 0.075,
+  "color": "#4A3A2E",
+  "depth": 0.5
+ }
+}

@@ -1,0 +1,115 @@
+{
+ "name": "keeper",
+ "_source": "design/keeper_b.png (Higgsfield sheet B); proportions measured off the front view, head width W = 0.42 m",
+ "skin": "#F1E3CD",
+ "head": {
+  "w": 0.42,
+  "h": 0.483,
+  "d": 0.4,
+  "egg": 0.08,
+  "z": 0.788
+ },
+ "face": {
+  "eyes": {
+   "x": 0.203,
+   "z": -0.16,
+   "rx": 0.12,
+   "rz": 0.125,
+   "pupil": [
+    0.27,
+    0.42
+   ],
+   "line": 0.016,
+   "lid_weight": 1.3
+  },
+  "brows": {
+   "x_in": 0.083,
+   "len": 0.25,
+   "z": 0.035,
+   "thick": 0.058,
+   "taper": 0.55,
+   "line": 0.01,
+   "color": "#6E3F22"
+  },
+  "mouth": {
+   "z": -0.365,
+   "w": 0.137,
+   "h": 0.15,
+   "line": 0.016
+  },
+  "freckles": [
+   [
+    0.262,
+    -0.33
+   ],
+   [
+    0.292,
+    -0.348
+   ],
+   [
+    0.256,
+    -0.365
+   ]
+  ],
+  "freckle_color": "#C98767"
+ },
+ "body": {
+  "kind": "coat",
+  "color": "#F6C21A",
+  "z0": 0.203,
+  "z1": 0.497,
+  "top_r": 0.13,
+  "bot_r": 0.168,
+  "depth": 0.82,
+  "collar": {
+   "h": 0.09,
+   "open": 26
+  },
+  "hood": true,
+  "buttons": {
+   "kind": "toggle",
+   "n": 3,
+   "color": "#2E2A33"
+  },
+  "seam": true
+ },
+ "arms": {
+  "color": "#F6C21A",
+  "r0": 0.042,
+  "r1": 0.035,
+  "len": 0.25,
+  "angle": 35,
+  "hand": {
+   "r": 0.042,
+   "color": "#1E1B22"
+  }
+ },
+ "legs": {
+  "color": "#1E1B22",
+  "r": 0.0126,
+  "hip_x": 0.063,
+  "z_hip": 0.23,
+  "z_ankle": 0.1
+ },
+ "feet": {
+  "kind": "boot",
+  "color": "#2B3658",
+  "h": 0.126,
+  "r": 0.052,
+  "toe": 0.07
+ },
+ "hat": {
+  "kind": "beanie",
+  "color": "#26305A",
+  "brim_z": 0.055,
+  "tilt": 14,
+  "brim_h": 0.12,
+  "thick": 0.05,
+  "crown": 0.1,
+  "ribs": 26
+ },
+ "hair": {
+  "kind": "curly_tuft",
+  "color": "#C8622A"
+ }
+}
