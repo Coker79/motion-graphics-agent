@@ -12,6 +12,7 @@ Pick ONE primary skill, then layer the support skills.
 | 12–20 s hype reel / teaser / launch sting | `explainer-high-energy` |
 | 45–90 s calm product demo / feature walkthrough | `explainer-default` |
 | 10–30 s one-take story / loopable product animation | `explainer-engaging` |
+| Animated maps (countries, routes, pins) — combine with director | `map-animation` |
 | B-roll / cutaways for a talking-head video + transcript | `motion-broll` |
 | Anything else, or a full production (VO script, storyboard, 2D/3D, editing raw footage, captions, multi-format) | `motion-video-director` |
 
