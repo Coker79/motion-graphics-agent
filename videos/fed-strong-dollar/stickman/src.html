@@ -14,7 +14,7 @@ html,body{margin:0;background:#FDFDFC;overflow:hidden}
  17.5 America tosses BILL receipt across; other figure catches it, shocked; "SOMEONE ELSE PAYS"                        (whoosh, catch)
  21.4 figure points down; "FULL STORY ↓"                                                                                 (pop)
 */
-const W=1080,H=1920,OFF=7.0,T1=6.15,T2=7.05,VO=OFF+0.15,D=OFF+24.4;window.VIDEO=null;const VID={w:W,h:H,duration:D};
+const W=1080,H=1920,OFF=7.0,T1=6.15,T2=7.05,VO=OFF+0.15,D=OFF+0.15+23.2;window.VIDEO=null;const VID={w:W,h:H,duration:D};
 const x=document.getElementById('c').getContext('2d');
 const clamp=(v,a=0,b=1)=>Math.min(b,Math.max(a,v)),lerp=(a,b,k)=>a+(b-a)*k,seg=(t,a,b)=>clamp((t-a)/(b-a));
 const ease=v=>(v=clamp(v),v<.5?4*v*v*v:1-Math.pow(-2*v+2,3)/2);
@@ -108,11 +108,11 @@ function scene(t){if(t<T1){intro(t);return;}const u=t-VO;
   const c=figure({x:830,y:1290,s:1.45,tag:'THE WORLD',tagCol:'#e6f0ff',face:fly>.9?'shock':'neutral',armL:[lerp(-.4,-2.4,fly),.3],armR:[lerp(.4,-2.2,fly),-.3],look:-1});
   const bx=lerp(360,c.hl[0]+30,fly),by=lerp(860,c.hl[1]-20,fly)-Math.sin(fly*Math.PI)*260;bill(bx,by,150,190,'BILL','#fff',fly*6.28*1.5);}
  else{const v=u-21.4;hand('Follow for the',W/2,420,90);hand('next case file',W/2,520,90,RED);
-  const b=8*Math.sin(v*6),AX=W/2+220;figure({x:W/2-80,y:1300,s:1.55,face:'point',reachR:[AX-40,1250+b],armL:[-.3,.2]});ln(AX,1180+b,AX,1400+b,7,RED,95);ln(AX,1400+b,AX-34,1360+b,7,RED,96);ln(AX,1400+b,AX+34,1360+b,7,RED,97);}}
+  const b=8*Math.sin(v*6),AX=W/2+220;figure({x:W/2,y:1300,s:1.55,face:'smug',armL:[-2.4,.3],armR:[2.4,-.3]});}}
 
 // ---------- captions (Hand, single line, timed to George) ----------
 const AL=__ALIGN__,ALI=__ALIGN_INTRO__;const WORDS=[];{let c2='',s2=null;ALI.characters.forEach((ch,i)=>{if(ch===' '){if(c2)WORDS.push({w:c2,t:s2});c2='';s2=null;}else{if(s2===null)s2=ALI.character_start_times_seconds[i];c2+=ch;}});if(c2)WORDS.push({w:c2,t:s2});}{let cur='',st=null;AL.characters.forEach((ch,i)=>{if(ch===' '){if(cur)WORDS.push({w:cur,t:st+VO});cur='';st=null;}else{if(st===null)st=AL.character_start_times_seconds[i];cur+=ch;}});if(cur)WORDS.push({w:cur,t:st+VO});}
-const CH=[];{let cu=[];WORDS.forEach((o,i)=>{cu.push(o);const nx=WORDS[i+1];if(cu.length>=5||!nx||/[.,]$/.test(o.w)){CH.push(cu);cu=[];}});}
+WORDS.splice(0,WORDS.length,...WORDS.filter(o=>o.t<VO+21.4));const CH=[];{let cu=[];WORDS.forEach((o,i)=>{cu.push(o);const nx=WORDS[i+1];if(cu.length>=5||!nx||/[.,]$/.test(o.w)){CH.push(cu);cu=[];}});}
 function captions(t){if(t>=T1-.05&&t<VO+.05)return;let ci=-1;CH.forEach((c,i)=>{if(t>=c[0].t)ci=i;});if(ci<0)return;const c=CH[ci];if(t>c[c.length-1].t+1.6)return;const s=c.map(o=>o.w).join(' ').replace('nineteen eighty-two','1982').replace('nineteen ninety-four','1994').replace('twenty twenty-two','2022');x.font='600 60px Hand';const w=Math.min(1,960/x.measureText(s).width);x.save();x.translate(W/2,1620);x.scale(w,w);hand(s,0,0,60,'#333',  'center',600);x.restore();}
 
 window.seek=function(t){t=((t%D)+D)%D;BOIL=Math.floor(t*8);x.setTransform(1,0,0,1,0,0);x.drawImage(PAPER_TEX,0,0);
@@ -131,7 +131,7 @@ document.fonts.load('700 40px Hand').then(()=>document.fonts.load('600 40px Hand
 // ---------- sound: voice on top, light tense pulse, action SFX ----------
 const VOB='__VO__',INTRO_B='__INTRO__';
 window.buildAudio=async function(ctx,stem='all'){const sr=ctx.sampleRate,out=ctx.createGain();out.connect(ctx.destination);
- if(stem!=='bg'){const b=await ctx.decodeAudioData(Uint8Array.from(atob(VOB),c=>c.charCodeAt(0)).buffer);const s=ctx.createBufferSource();s.buffer=b;s.connect(out);s.start(VO);}{const b2=await ctx.decodeAudioData(Uint8Array.from(atob(INTRO_B),c=>c.charCodeAt(0)).buffer);const s2=ctx.createBufferSource();s2.buffer=b2;s2.connect(out);s2.start(0);}if(stem==='voice')return;
+ if(stem!=='bg'){const b=await ctx.decodeAudioData(Uint8Array.from(atob(VOB),c=>c.charCodeAt(0)).buffer);const s=ctx.createBufferSource();s.buffer=b;s.connect(out);s.start(VO);s.stop(VO+21.38);}{const b2=await ctx.decodeAudioData(Uint8Array.from(atob(INTRO_B),c=>c.charCodeAt(0)).buffer);const s2=ctx.createBufferSource();s2.buffer=b2;s2.connect(out);s2.start(0);}if(stem==='voice')return;
  const bus=ctx.createGain();bus.gain.value=.42;bus.connect(out);const R=rng(5),nb=ctx.createBuffer(1,sr*2,sr),nd=nb.getChannelData(0);for(let i=0;i<nd.length;i++)nd[i]=R()*2-1;
  bus.gain.setValueAtTime(.08,0);bus.gain.setValueAtTime(.08,4.9);bus.gain.linearRampToValueAtTime(.42,T2);
  const beat=60/96;for(let t=4.9;t<D-.8;t+=beat/2){const o=ctx.createOscillator(),g=ctx.createGain(),lp=ctx.createBiquadFilter();o.type='sawtooth';o.frequency.value=t>12.8?46.2:41.2;lp.type='lowpass';lp.frequency.value=220;g.gain.setValueAtTime(0,t);g.gain.linearRampToValueAtTime(.12,t+.01);g.gain.exponentialRampToValueAtTime(.001,t+beat*.42);o.connect(lp).connect(g).connect(bus);o.start(t);o.stop(t+beat*.5);}
