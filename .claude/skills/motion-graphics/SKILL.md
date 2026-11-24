@@ -27,3 +27,9 @@ Shared rules:
 3. Every frame must be a pure function of time (seekable, seeded randomness) so previews match finals.
 4. Look at your output (contact sheets) after every change; never say "looks good" without having viewed frames, and never say "sounds good" — give the user timestamps to check by ear.
 5. Final MP4: H.264, yuv420p, AAC 48 kHz, `+faststart`; verify with `probe-mp4.sh`.
+
+## Channel defaults (The Efficiency Edge)
+- **Voiceover:** always use vidIQ voice **George – Warm, Captivating Storyteller** (British), voiceId `JBFqnCBsd6RMkjVDRZzb`, via `vidiq_voiceover_generate` (use `scriptLines`, one per sentence, to get timings). Only change it if the user asks.
+- **Shorts style:** 1080×1920, green `#2f3f33` background, gold `#E2B33C`, yellow `#FFD400` emphasis captions, hand-drawn 12 fps boil, timeline header, re-hook by ~5 s. Template: `shorts/ai-bubble/src.html`.
+- **Audio:** −14 LUFS / −1.5 dBTP.
+- **Publishing:** draft with `vidiq_social_post_draft_create`, show the user, publish only after they approve.
