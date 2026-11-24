@@ -5,3 +5,4 @@ node_modules/
 **/*.pcm
 **/render.log
 shorts/*/short.html
+shorts/*/short.mp4

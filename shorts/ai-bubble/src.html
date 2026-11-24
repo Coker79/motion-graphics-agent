@@ -141,7 +141,7 @@ window.buildAudio=async function(ctx){const sr=ctx.sampleRate;const bin=Uint8Arr
  for(let i=0;i*4<D;i++){const t=i*4,c=chords[i%4];c.forEach(f=>{const o=ctx.createOscillator(),g=ctx.createGain();o.type='sawtooth';o.frequency.value=f;g.gain.setValueAtTime(0,t);g.gain.linearRampToValueAtTime(.5,t+1);g.gain.linearRampToValueAtTime(0,t+4.2);o.connect(g).connect(bed);o.start(t);o.stop(t+4.3);});}
  // pulse to add tension after 33.67
  for(let t=33.67;t<46.9;t+=.5)osc('sine',55,t,.25,.25,40);
- const whoosh=t=>noise(t-.3,.45,.18,'bandpass',300,3500,2),impact=t=>{osc('sine',85,t,.8,.55,32);noise(t,.25,.2,'lowpass',2500);},pop=t=>osc('sine',600,t,.08,.25,1400),tick=t=>osc('square',2200,t,.03,.04);
+ const whoosh=t=>noise(Math.max(0,t-.3),.45,.18,'bandpass',300,3500,2),impact=t=>{osc('sine',85,t,.8,.55,32);noise(t,.25,.2,'lowpass',2500);},pop=t=>osc('sine',600,t,.08,.25,1400),tick=t=>osc('square',2200,t,.03,.04);
  whoosh(.1);impact(5.88);whoosh(9.93);impact(14.68);whoosh(17.68);impact(21.08);osc('sine',1046,24.5,1.2,.08);osc('sine',1568,24.6,1.2,.05);
  [30.6,31.0,31.4,31.8,49.6,50.05,50.5].forEach(pop);noise(32.67,1,.15,'bandpass',200,5000,3);impact(33.67);
  for(let t=35.6;t<39.5;t+=.12)tick(t);impact(41.6);noise(41.6,.15,.3,'highpass',1500);whoosh(46.99);osc('sine',60,52.43,2.5,.6,30);};
