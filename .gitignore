@@ -7,3 +7,8 @@ node_modules/
 shorts/*/short.html
 shorts/*/short.mp4
 **/short_raw*.mp4
+**/raw*.mp4
+**/avatar-test.mp4
+**/face*.png
+**/faces.png
+**/tts.json
