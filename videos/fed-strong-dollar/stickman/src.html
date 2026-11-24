@@ -14,7 +14,7 @@ html,body{margin:0;background:#FDFDFC;overflow:hidden}
  17.5 America tosses BILL receipt across; other figure catches it, shocked; "SOMEONE ELSE PAYS"                        (whoosh, catch)
  21.4 figure points down; "FULL STORY ↓"                                                                                 (pop)
 */
-const W=1080,H=1920,OFF=6.6,VO=OFF+0.15,D=OFF+24.4;window.VIDEO=null;const VID={w:W,h:H,duration:D};
+const W=1080,H=1920,OFF=7.0,T1=6.15,T2=7.05,VO=OFF+0.15,D=OFF+24.4;window.VIDEO=null;const VID={w:W,h:H,duration:D};
 const x=document.getElementById('c').getContext('2d');
 const clamp=(v,a=0,b=1)=>Math.min(b,Math.max(a,v)),lerp=(a,b,k)=>a+(b-a)*k,seg=(t,a,b)=>clamp((t-a)/(b-a));
 const ease=v=>(v=clamp(v),v<.5?4*v*v*v:1-Math.pow(-2*v+2,3)/2);
@@ -45,7 +45,7 @@ function figure(o){const s=o.s||1;x.save();x.translate(o.x,o.y);x.scale(s,s);con
  // head
  const hx=neck[0]+Math.sin(lean+(o.tilt||0))*42,hy=neck[1]-Math.cos(lean+(o.tilt||0))*42;circ(hx,hy,40,PAPER);face(hx,hy,o.face||'neutral',o.look||0);
  if(o.hat==='top'){x.fillStyle=NAVY;x.fillRect(hx-30,hy-100,60,62);ln(hx-46,hy-38,hx+46,hy-38,7,NAVY,8);x.fillStyle=RED;x.fillRect(hx-30,hy-58,60,10);}
- if(o.tag){x.save();x.translate(neck[0]*.6-(o.tag.length*19+24)-10,neck[1]*.55);x.rotate(.08);x.fillStyle=o.tagCol||'#fff3c4';x.strokeStyle=INK;x.lineWidth=3;x.beginPath();x.roundRect(-4,-22,o.tag.length*19+24,44,8);x.fill();x.stroke();hand(o.tag,8+o.tag.length*9.5,10,34,INK);x.restore();}
+ if(o.tag){x.save();x.translate(o.tagRight?neck[0]*.6+30:neck[0]*.6-(o.tag.length*19+24)-10,neck[1]*.55);x.rotate(.08);x.fillStyle=o.tagCol||'#fff3c4';x.strokeStyle=INK;x.lineWidth=3;x.beginPath();x.roundRect(-4,-22,o.tag.length*19+24,44,8);x.fill();x.stroke();hand(o.tag,8+o.tag.length*9.5,10,34,INK);x.restore();}
  x.restore();return{hl:[o.x+hl[0]*s,o.y+hl[1]*s],hr:[o.x+hr[0]*s,o.y+hr[1]*s],head:[o.x+hx*s,o.y+hy*s]};}
 function face(cx,cy,f,look){const ex=look*8;x.fillStyle=INK;const eye=(dx,h=11)=>{x.beginPath();x.ellipse(cx+dx+ex,cy-6,5.5,h/2+.5,0,0,7);x.fill();};
  const brow=(dx,dy,rot)=>{x.save();x.translate(cx+dx+ex,cy-22+dy);x.rotate(rot);ln(-10,0,10,0,3.5,INK,30+dx);x.restore();};
@@ -75,28 +75,28 @@ function clip(t,a,X,Y,rot,src,l1,l2){if(t<a)return;const k=spring(t-a,12,.75);x.
  x.font='600 24px Sans';x.fillStyle=RED;x.textAlign='left';x.fillText(src,-330,-52);x.font='700 46px Hand';x.fillStyle=INK;x.fillText(l1,-330,0);const hw=ease(seg(t,a+.8,a+1.4));if(hw>0){x.font='700 46px Hand';const w=x.measureText(l2).width;x.fillStyle='rgba(214,64,46,.28)';x.fillRect(-334,22,w*hw+8,44);}x.fillStyle=INK;x.fillText(l2,-330,58);
  x.fillStyle='#b8b0a0';x.beginPath();x.arc(0,-92,9,0,7);x.fill();x.restore();}
 const PH=__PHIL__.map(u=>{const im=new Image();im.src=u;return im;});
-function intro(t){const k=spring(t-.15,10,.75);x.save();x.translate(W/2,820+(1-k)*120);x.rotate(-.03);x.globalAlpha=clamp(k*1.4);const pw=640,ph=pw*1458/1088;
+function intro(t){const k=spring(t-.15,10,.75),push=1+.07*ease(seg(t,4.6,T1+.6));x.save();x.translate(W/2,820+(1-k)*120);x.scale(push,push);x.rotate(-.03);x.globalAlpha=clamp(k*1.4);const pw=640,ph=pw*1458/1088;
  x.shadowColor='rgba(40,20,0,.45)';x.shadowBlur=40;x.shadowOffsetY=14;x.fillStyle='#faf7ef';x.fillRect(-pw/2-30,-ph/2-30,pw+60,ph+150);x.shadowBlur=0;x.shadowOffsetY=0;x.shadowColor='transparent';const im=PH[Math.min(PH.length-1,Math.floor(t*25))];x.drawImage(im,-pw/2,-ph/2,pw,ph);
  hand('The Efficiency Edge',0,ph/2+90,62,INK);x.fillStyle='rgba(200,190,170,.85)';x.save();x.rotate(.12);x.fillRect(-110,-ph/2-60,220,56);x.restore();x.restore();
  x.font='600 30px Sans';x.fillStyle='#7a6a50';x.textAlign='center';x.fillText('CASE FILE #2',W/2,190);hand('Who pays for the Fed?',W/2,290,78,RED);}
 
 // ---------- scenes ----------
-function scene(t){if(t<OFF){intro(t);return;}const u=t-VO;
+function scene(t){if(t<T1){intro(t);return;}const u=t-VO;
  timelineChips(t);
  if(u<6.8){hand('America raises rates...',W/2,360,74);underline(W/2-10,380,330,seg(u,1.2,1.8));
   const up=ease(seg(u,1.0,2.0));const lv=lever(470,1280,up);
   const a=figure({x:230,y:1290,s:1.45,hat:'top',tag:'USA',face:up<1?'strain':'smug',lean:-.08,reachR:lv,armL:[-.3,.2]});
   const sw=seg(u,3.0,5.2);const bw=lerp(140,300,ease(sw));
-  figure({x:800,y:1290,s:1.45,tag:'MEXICO',face:u>4?'worry':'neutral',lean:.1+.06*Math.sin(u*9)*(u>4),armL:[-1.2,.5],armR:[1.2,-.5],look:-1});
+  figure({x:800,y:1290,s:1.45,tag:'MEXICO',tagRight:1,face:u>4?'worry':'neutral',lean:.1+.06*Math.sin(u*9)*(u>4),armL:[-1.2,.5],armR:[1.2,-.5],look:-1});
   if(u>2.6)bill(800,820,bw,bw*.75,'DEBT $',undefined,.05);clip(u,3.6,W/2,560,-.03,'AUGUST 1982','Mexico tells lenders','it cannot pay');
   if(u>4.6){hand("can't pay!",560,1010,66,RED);}}
  else if(u<9.6){const v=u-6.8;hand('1994. Again.',W/2,360,80);const up=ease(seg(v,.3,1.1));const lv=lever(470,1280,up);
   figure({x:230,y:1290,s:1.45,hat:'top',tag:'USA',face:'smug',reachR:lv});
-  const cr=ease(seg(v,1.4,2.1));const f=figure({x:800,y:1290,s:1.45,tag:'MEXICO',face:cr>0?'shock':'worry',armR:[2.6,-.6],armL:[-1.0,.4],look:1});
+  const cr=ease(seg(v,1.4,2.1));const f=figure({x:800,y:1290,s:1.45,tag:'MEXICO',tagRight:1,face:cr>0?'shock':'worry',armR:[2.6,-.6],armL:[-1.0,.4],look:1});
   coin(f.hr[0]-10,f.hr[1]-70,72,cr);}
  else if(u<12.7){const v=u-9.6;hand('2022.',W/2,360,86);const up=ease(seg(v,.2,.9));const lv=lever(470,1280,up);
   figure({x:230,y:1290,s:1.45,hat:'top',tag:'USA',face:'smug',reachR:lv});
-  const drop=ease(seg(v,1.0,1.6));const f=figure({x:800,y:1290,s:1.45,tag:'GHANA',face:'shock',armL:[lerp(-1.4,-.3,drop),.3],armR:[lerp(1.4,.3,drop),-.3]});
+  const drop=ease(seg(v,1.0,1.6));const f=figure({x:800,y:1290,s:1.45,tag:'GHANA',tagRight:1,face:'shock',armL:[lerp(-1.4,-.3,drop),.3],armR:[lerp(1.4,.3,drop),-.3]});
   bill(lerp(900,960,drop),lerp(1000,1420,drop),170,125,'DEBT $','#fff3c4',drop*.6);clip(v,1.0,W/2,600,.03,'DECEMBER 2022','Ghana suspends most','foreign debt payments');stampTxt(v,1.7,'DEFAULT',W/2+160,700,74);}
  else if(u<17.5){const v=u-12.7;hand('Now...',W/2,360,86);const reach=ease(seg(v,.2,1.4));lever(470,1280,0);
   const a=figure({x:230,y:1290,s:1.45,hat:'top',tag:'USA',face:'point',lean:.12*reach,armR:[lerp(.3,1.9,reach),lerp(-.2,.4,reach)]});
@@ -113,11 +113,18 @@ function scene(t){if(t<OFF){intro(t);return;}const u=t-VO;
 // ---------- captions (Hand, single line, timed to George) ----------
 const AL=__ALIGN__,ALI=__ALIGN_INTRO__;const WORDS=[];{let c2='',s2=null;ALI.characters.forEach((ch,i)=>{if(ch===' '){if(c2)WORDS.push({w:c2,t:s2});c2='';s2=null;}else{if(s2===null)s2=ALI.character_start_times_seconds[i];c2+=ch;}});if(c2)WORDS.push({w:c2,t:s2});}{let cur='',st=null;AL.characters.forEach((ch,i)=>{if(ch===' '){if(cur)WORDS.push({w:cur,t:st+VO});cur='';st=null;}else{if(st===null)st=AL.character_start_times_seconds[i];cur+=ch;}});if(cur)WORDS.push({w:cur,t:st+VO});}
 const CH=[];{let cu=[];WORDS.forEach((o,i)=>{cu.push(o);const nx=WORDS[i+1];if(cu.length>=5||!nx||/[.,]$/.test(o.w)){CH.push(cu);cu=[];}});}
-function captions(t){let ci=-1;CH.forEach((c,i)=>{if(t>=c[0].t)ci=i;});if(ci<0)return;const c=CH[ci];if(t>c[c.length-1].t+1.6)return;const s=c.map(o=>o.w).join(' ').replace('nineteen eighty-two','1982').replace('nineteen ninety-four','1994').replace('twenty twenty-two','2022');x.font='600 60px Hand';const w=Math.min(1,960/x.measureText(s).width);x.save();x.translate(W/2,1620);x.scale(w,w);hand(s,0,0,60,'#333',  'center',600);x.restore();}
+function captions(t){if(t>=T1-.05&&t<VO+.05)return;let ci=-1;CH.forEach((c,i)=>{if(t>=c[0].t)ci=i;});if(ci<0)return;const c=CH[ci];if(t>c[c.length-1].t+1.6)return;const s=c.map(o=>o.w).join(' ').replace('nineteen eighty-two','1982').replace('nineteen ninety-four','1994').replace('twenty twenty-two','2022');x.font='600 60px Hand';const w=Math.min(1,960/x.measureText(s).width);x.save();x.translate(W/2,1620);x.scale(w,w);hand(s,0,0,60,'#333',  'center',600);x.restore();}
 
 window.seek=function(t){t=((t%D)+D)%D;BOIL=Math.floor(t*8);x.setTransform(1,0,0,1,0,0);x.drawImage(PAPER_TEX,0,0);
  x.strokeStyle='rgba(76,60,30,.03)';x.lineWidth=1.2;for(let i=0;i<=W;i+=96){x.beginPath();x.moveTo(i,0);x.lineTo(i,1500);x.stroke();}for(let j=0;j<=1500;j+=96){x.beginPath();x.moveTo(0,j);x.lineTo(W,j);x.stroke();}
- scene(t);captions(t);x.font='600 34px Hand';x.fillStyle='rgba(60,40,20,.5)';x.textAlign='center';x.fillText('The Efficiency Edge',W/2,1780);
+ scene(t);
+ if(t>=T1&&t<T2){const k=ease(seg(t,T1,T2)),ex=lerp(W+260,-520,k),slope=.42;
+  const edge=y=>ex+(H-y)*slope;
+  x.save();x.beginPath();x.moveTo(-10,-10);x.lineTo(edge(-10),-10);x.lineTo(edge(H+10),H+10);x.lineTo(-10,H+10);x.closePath();x.clip();x.drawImage(PAPER_TEX,0,0);intro(t);x.restore();
+  const cw=150*Math.sin(Math.PI*k)+20;x.save();x.beginPath();x.moveTo(edge(-10),-10);x.lineTo(edge(-10)+cw,-10);x.lineTo(edge(H+10)+cw,H+10);x.lineTo(edge(H+10),H+10);x.closePath();
+  const g=x.createLinearGradient(edge(H/2),H/2,edge(H/2)+cw,H/2);g.addColorStop(0,'#cfc3a4');g.addColorStop(.55,'#f6f0e0');g.addColorStop(1,'#e6dcc2');x.fillStyle=g;x.fill();x.restore();
+  x.save();const sg=x.createLinearGradient(edge(H/2)+cw,H/2,edge(H/2)+cw+90,H/2);sg.addColorStop(0,'rgba(40,20,0,.28)');sg.addColorStop(1,'rgba(40,20,0,0)');x.fillStyle=sg;x.beginPath();x.moveTo(edge(-10)+cw,-10);x.lineTo(edge(-10)+cw+90,-10);x.lineTo(edge(H+10)+cw+90,H+10);x.lineTo(edge(H+10)+cw,H+10);x.closePath();x.fill();x.restore();}
+ captions(t);x.font='600 34px Hand';x.fillStyle='rgba(60,40,20,.5)';x.textAlign='center';x.fillText('The Efficiency Edge',W/2,1780);
  if(t<.2){x.fillStyle=`rgba(236,227,204,${1-t/.2})`;x.fillRect(0,0,W,H);}if(t>D-.5){x.fillStyle=`rgba(236,227,204,${seg(t,D-.5,D)})`;x.fillRect(0,0,W,H);}};
 document.fonts.load('700 40px Hand').then(()=>document.fonts.load('600 40px Hand')).then(()=>Promise.all(PH.map(im=>im.decode()))).then(()=>{window.VIDEO=VID;});
 
@@ -126,10 +133,12 @@ const VOB='__VO__',INTRO_B='__INTRO__';
 window.buildAudio=async function(ctx,stem='all'){const sr=ctx.sampleRate,out=ctx.createGain();out.connect(ctx.destination);
  if(stem!=='bg'){const b=await ctx.decodeAudioData(Uint8Array.from(atob(VOB),c=>c.charCodeAt(0)).buffer);const s=ctx.createBufferSource();s.buffer=b;s.connect(out);s.start(VO);}{const b2=await ctx.decodeAudioData(Uint8Array.from(atob(INTRO_B),c=>c.charCodeAt(0)).buffer);const s2=ctx.createBufferSource();s2.buffer=b2;s2.connect(out);s2.start(0);}if(stem==='voice')return;
  const bus=ctx.createGain();bus.gain.value=.42;bus.connect(out);const R=rng(5),nb=ctx.createBuffer(1,sr*2,sr),nd=nb.getChannelData(0);for(let i=0;i<nd.length;i++)nd[i]=R()*2-1;
- const beat=60/96;for(let t=OFF+.3;t<D-.8;t+=beat/2){const o=ctx.createOscillator(),g=ctx.createGain(),lp=ctx.createBiquadFilter();o.type='sawtooth';o.frequency.value=t>12.8?46.2:41.2;lp.type='lowpass';lp.frequency.value=220;g.gain.setValueAtTime(0,t);g.gain.linearRampToValueAtTime(.12,t+.01);g.gain.exponentialRampToValueAtTime(.001,t+beat*.42);o.connect(lp).connect(g).connect(bus);o.start(t);o.stop(t+beat*.5);}
- for(let t=OFF+.3;t<D-.8;t+=beat){const s=ctx.createBufferSource(),hp=ctx.createBiquadFilter(),g=ctx.createGain();s.buffer=nb;hp.type='highpass';hp.frequency.value=6500;g.gain.setValueAtTime(.05,t);g.gain.exponentialRampToValueAtTime(.001,t+.04);s.connect(hp).connect(g).connect(bus);s.start(t,(t*.3)%1.5);s.stop(t+.05);}
+ bus.gain.setValueAtTime(.08,0);bus.gain.setValueAtTime(.08,4.9);bus.gain.linearRampToValueAtTime(.42,T2);
+ const beat=60/96;for(let t=4.9;t<D-.8;t+=beat/2){const o=ctx.createOscillator(),g=ctx.createGain(),lp=ctx.createBiquadFilter();o.type='sawtooth';o.frequency.value=t>12.8?46.2:41.2;lp.type='lowpass';lp.frequency.value=220;g.gain.setValueAtTime(0,t);g.gain.linearRampToValueAtTime(.12,t+.01);g.gain.exponentialRampToValueAtTime(.001,t+beat*.42);o.connect(lp).connect(g).connect(bus);o.start(t);o.stop(t+beat*.5);}
+ for(let t=4.9+beat*2;t<D-.8;t+=beat){const s=ctx.createBufferSource(),hp=ctx.createBiquadFilter(),g=ctx.createGain();s.buffer=nb;hp.type='highpass';hp.frequency.value=6500;g.gain.setValueAtTime(.05,t);g.gain.exponentialRampToValueAtTime(.001,t+.04);s.connect(hp).connect(g).connect(bus);s.start(t,(t*.3)%1.5);s.stop(t+.05);}
  const nz=(t,d,p,type,f1,f2)=>{const s=ctx.createBufferSource(),fl=ctx.createBiquadFilter(),g=ctx.createGain();s.buffer=nb;fl.type=type;fl.frequency.setValueAtTime(f1,t);if(f2)fl.frequency.exponentialRampToValueAtTime(f2,t+d);g.gain.setValueAtTime(p,t);g.gain.exponentialRampToValueAtTime(.001,t+d);s.connect(fl).connect(g).connect(bus);s.start(t,(t*.7)%1.5);s.stop(t+d+.05);};
  const osc=(f,t,d,p,f2,ty='sine')=>{const o=ctx.createOscillator(),g=ctx.createGain();o.type=ty;o.frequency.setValueAtTime(f,t);if(f2)o.frequency.exponentialRampToValueAtTime(f2,t+d);g.gain.setValueAtTime(p,t);g.gain.exponentialRampToValueAtTime(.001,t+d);o.connect(g).connect(bus);o.start(t);o.stop(t+d+.05);};
+ nz(T1+.05,.75,.22,'bandpass',500,4200);nz(T1+.55,.25,.12,'highpass',2500);osc(80,T2-.05,.35,.25,45);
  const clunk=t=>{osc(110,t,.25,.5,55);nz(t,.08,.3,'bandpass',1800);};
  clunk(VO+2.0);nz(VO+3.0,.5,.12,'bandpass',600,2400);clunk(VO+6.8+1.1);nz(VO+6.8+1.5,.2,.4,'highpass',3000);osc(900,VO+6.8+1.5,.12,.15,300,'triangle');
  clunk(VO+9.6+.9);osc(70,VO+9.6+1.7,.6,.6,35);nz(VO+9.6+1.7,.15,.4,'lowpass',2000);nz(VO+9.6+1.5,.3,.2,'bandpass',400,200);
