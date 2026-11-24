@@ -35,7 +35,7 @@ These rules override anything older in this repo. Do not deviate unless the user
 
 ### 1. Who appears and who speaks (LOCKED)
 - **Long videos:** open with the reusable Phil intro clip `assets/phil/phil-intro.mp4` (audio `assets/phil/phil-intro.mp3`: "Welcome to The Efficiency Edge. I'm Phil. Today, we're decoding the money story behind the headlines."), shown in a fixed frame that never moves or resizes. **George narrates everything after the intro.**
-- **Shorts:** George only. No Phil.
+- **Shorts:** also open with the Phil intro clip (user instruction, 24 Nov 2026), framed as a polaroid on the paper page, then George narrates.
 - **Never ask the user to generate a new Phil/avatar clip** and never send Phil MP3s, unless the user explicitly asks for new Phil lines. Phil = ElevenLabs avatar "Phil", podcast-studio style, avatar ID `pZbecZhar6mId02mevrC` (API video needs Pro; on Starter the user would make clips in the app).
 - **Voice:** George (ElevenLabs voiceId `JBFqnCBsd6RMkjVDRZzb`), via `POST https://api.elevenlabs.io/v1/text-to-speech/JBFqnCBsd6RMkjVDRZzb/with-timestamps?output_format=mp3_44100_128` with `{"text":...,"model_id":"eleven_multilingual_v2"}` and header `xi-api-key: proxy-injected` (proxy injects the key; never write keys to files). Use the timings for captions/SRT. Check credits first (`GET /v1/user/subscription`).
 
@@ -44,7 +44,7 @@ These rules override anything older in this repo. Do not deviate unless the user
 - Long video goes live first; the Short 1–2 days later. The user links the Short to the long video in Studio ("Related video", Studio-only); add "Full story: <link>" to the Short's description via `tools/yt.py update`.
 
 ### 3. Look and sound (LOCKED)
-- Visual style: documentary "case file" look (aged paper, typewriter text, case folders, newspaper clippings with red highlights, polaroids, red-string maps, hand-drawn charts with red circles, stamps) — template `videos/fed-strong-dollar/src.html`. Cinematic variant: `videos/too-big-to-fire-long/`. No real photos of people (copyright): use illustrations/silhouettes.
+- Visual style (house style): **hybrid** — B1-style stickman characters (slender, expressive, hand-drawn, Caveat hand lettering) acting out the story INSIDE the documentary world, plus documentary "case file" props: (aged paper, typewriter text, case folders, newspaper clippings with red highlights, polaroids, red-string maps, hand-drawn charts with red circles, stamps) — template `videos/fed-strong-dollar/src.html`. Cinematic variant: `videos/too-big-to-fire-long/`. No real photos of people (copyright): use illustrations/silhouettes.
 - Word-by-word captions with yellow emphasis; keep everything clear of the Phil frame.
 - Music: TENSE score — pulsing sub-bass ostinato on 8ths (~96 BPM), clock-tick pulse, rising string pads into reveals, short drops before key lines, impacts only on reveals. Voice always on top: background stem 14–16 dB under voice (measure stems with ebur128). Final −14 LUFS / −1.5 dBTP.
 - Facts first: only sourced claims; allegations labelled as reported; no buy/sell advice; disclaimer in description.
