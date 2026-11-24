@@ -4,4 +4,4 @@ Start every video request with the `motion-graphics` skill. Channel defaults (vo
 
 Default voiceover voice: George (ElevenLabs voiceId `JBFqnCBsd6RMkjVDRZzb`), generated via the ElevenLabs API with timestamps — see Channel defaults.
 
-Default host avatar: ElevenLabs "Cokerbroun", avatar ID `pZbecZhar6mId02mevrC`.
+Default host avatar: ElevenLabs "Phil", avatar ID `pZbecZhar6mId02mevrC` (not Cokerbroun).
