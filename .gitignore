@@ -42,3 +42,9 @@ shorts/*/short.mp4
 videos/*/*.mp4
 **/v*.png
 **/q.png
+**/p[0-9]*.png
+**/e[0-9]*.png
+**/pick.png
+**/eyes.png
+**/thumb.built.html
+**/thumb-small.png
