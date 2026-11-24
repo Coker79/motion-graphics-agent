@@ -17,7 +17,11 @@ Usage:
 import argparse, json, os, sys, time, urllib.parse, urllib.request, uuid
 
 CFG = os.path.expanduser('~/.config/efficiency-edge')
-CLIENT, TOKEN = os.path.join(CFG, 'client.json'), os.path.join(CFG, 'token.json')
+FULL = os.path.join(CFG, 'token-full.json')  # Desktop-client sign-in: youtube + force-ssl (captions) + analytics
+if os.path.exists(FULL):
+    CLIENT, TOKEN = os.path.join(CFG, 'client-desktop.json'), FULL
+else:
+    CLIENT, TOKEN = os.path.join(CFG, 'client.json'), os.path.join(CFG, 'token.json')
 API = 'https://www.googleapis.com'
 
 
@@ -110,6 +114,7 @@ def main():
     c = s.add_parser('captions'); c.add_argument('video'); c.add_argument('srt'); c.add_argument('--lang', default='en'); c.add_argument('--name', default='English')
     up = s.add_parser('update'); up.add_argument('video'); up.add_argument('--title'); up.add_argument('--desc-file'); up.add_argument('--tags'); up.add_argument('--publish-at')
     g = s.add_parser('get'); g.add_argument('video')
+    an = s.add_parser('analytics'); an.add_argument('--start', default='2026-10-25'); an.add_argument('--end', default='2026-11-23'); an.add_argument('--dims', default='video'); an.add_argument('--metrics', default='views,estimatedMinutesWatched,averageViewPercentage,subscribersGained')
     a = p.parse_args()
     if a.cmd == 'login': return login()
     if a.cmd == 'me':
@@ -124,6 +129,11 @@ def main():
         body, hd = multipart({'snippet': {'videoId': a.video, 'language': a.lang, 'name': a.name, 'isDraft': False}}, open(a.srt, 'rb').read(), 'application/octet-stream')
         d, _ = req('POST', '/upload/youtube/v3/captions?uploadType=multipart&part=snippet', raw=body, headers=hd)
         print('captions added:', d.get('id'))
+    elif a.cmd == 'analytics':
+        q = urllib.parse.urlencode({'ids': 'channel==MINE', 'startDate': a.start, 'endDate': a.end, 'metrics': a.metrics, 'dimensions': a.dims, 'sort': '-views', 'maxResults': 25} if a.dims == 'video' else {'ids': 'channel==MINE', 'startDate': a.start, 'endDate': a.end, 'metrics': a.metrics, 'dimensions': a.dims})
+        d, _ = req('GET', 'https://youtubeanalytics.googleapis.com/v2/reports?' + q)
+        print([h['name'] for h in d['columnHeaders']])
+        for r in d.get('rows', []): print(r)
     elif a.cmd == 'get':
         d, _ = req('GET', f'/youtube/v3/videos?part=snippet,status&id={a.video}')
         i = d['items'][0]; print(json.dumps({'title': i['snippet']['title'], 'status': i['status']}, indent=1))
