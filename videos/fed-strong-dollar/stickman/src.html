@@ -1,0 +1,123 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>Fed Short Stickman B1</title>
+<style>
+@font-face{font-family:Hand;src:url(data:font/ttf;base64,__CAVEAT__) format('truetype');font-weight:400 700}
+@font-face{font-family:Sans;src:url(data:font/ttf;base64,__NOTO__) format('truetype')}
+html,body{margin:0;background:#FDFDFC;overflow:hidden}
+</style></head><body><canvas id="c" width="1080" height="1920"></canvas>
+<script>
+/* B1 minimal hand-drawn · 9:16 · George VO 0–23.6 s
+ 0.0  1982: America (top hat, USA tag) pulls RATES lever up; Mexico figure's DEBT bill swells, empty pockets, sweat   (lever clunk, paper)
+ 6.8  1994: lever again; PESO coin cracks in second figure's hand                                                      (clunk, crack)
+ 9.6  2022: lever again; GHANA figure drops bag; DEFAULT stamp                                                          (clunk, stamp)
+ 12.7 NOW: hand reaches for lever; dollar bill grows, arrow up, "20-MONTH HIGH"                                         (rise)
+ 17.5 America tosses BILL receipt across; other figure catches it, shocked; "SOMEONE ELSE PAYS"                        (whoosh, catch)
+ 21.4 figure points down; "FULL STORY ↓"                                                                                 (pop)
+*/
+const W=1080,H=1920,D=24.4,VO=0.15;window.VIDEO=null;const VID={w:W,h:H,duration:D};
+const x=document.getElementById('c').getContext('2d');
+const clamp=(v,a=0,b=1)=>Math.min(b,Math.max(a,v)),lerp=(a,b,k)=>a+(b-a)*k,seg=(t,a,b)=>clamp((t-a)/(b-a));
+const ease=v=>(v=clamp(v),v<.5?4*v*v*v:1-Math.pow(-2*v+2,3)/2);
+function spring(t,w=14,z=.7){if(t<=0)return 0;const wd=w*Math.sqrt(1-z*z);return 1-Math.exp(-z*w*t)*(Math.cos(wd*t)+(z*w/wd)*Math.sin(wd*t));}
+const rng=s=>()=>(s=(s+0x6D2B79F5)|0,s=Math.imul(s^(s>>>15),1|s),s^=s+Math.imul(s^(s>>>7),61|s),((s^(s>>>14))>>>0)/4294967296);
+const INK='#1c1c1c',RED='#d6402e',YEL='#f3d34a',GRN='#5c9a5a',NAVY='#2b3a55',PAPER='#FDFDFC';
+let BOIL=0;const jit=(k)=>{const r=rng(BOIL*97+k);return(r()-.5)*1.6;};
+// hand-drawn line with slight wobble (8 fps boil)
+function ln(a,b,c,d,w=4.5,col=INK,k=0){x.strokeStyle=col;x.lineWidth=w;x.lineCap='round';x.lineJoin='round';const mx=(a+c)/2+jit(k+1)*1.2,my=(b+d)/2+jit(k+2)*1.2;x.beginPath();x.moveTo(a+jit(k+3),b+jit(k+4));x.quadraticCurveTo(mx,my,c+jit(k+5),d+jit(k+6));x.stroke();}
+function circ(cx,cy,r,fill,w=4.5,col=INK){x.beginPath();for(let i=0;i<=28;i++){const an=i/28*Math.PI*2,rr=r+jit(i)*.6;x.lineTo(cx+Math.cos(an)*rr,cy+Math.sin(an)*rr);}x.closePath();if(fill){x.fillStyle=fill;x.fill();}if(w){x.strokeStyle=col;x.lineWidth=w;x.stroke();}}
+function hand(s,X,Y,size=78,col=INK,al='center',wt=700){x.font=`${wt} ${size}px Hand`;x.fillStyle=col;x.textAlign=al;x.textBaseline='alphabetic';x.fillText(s,X,Y);}
+function underline(X,Y,w,k,col=RED){const kk=ease(k);if(kk<=0)return;ln(X-w/2,Y,X-w/2+w*kk,Y+2,5,col,77);}
+
+// ---------- stick figure ----------
+// limbs given as [angle1, angle2] in radians from straight down (0); positive = to figure's right on screen
+function limb(x0,y0,a1,a2,l1,l2,k){const x1=x0+Math.sin(a1)*l1,y1=y0+Math.cos(a1)*l1,x2=x1+Math.sin(a1+a2)*l2,y2=y1+Math.cos(a1+a2)*l2;ln(x0,y0,x1,y1,4.5,INK,k);ln(x1,y1,x2,y2,4.5,INK,k+10);return[x2,y2];}
+function figure(o){const s=o.s||1;x.save();x.translate(o.x,o.y);x.scale(s,s);const lean=o.lean||0;
+ const hip=[0,0],neck=[Math.sin(lean)*150,-Math.cos(lean)*150];
+ // legs
+ const fl=limb(0,0,o.legL?.[0]??-.18,o.legL?.[1]??.1,78,78,1),fr=limb(0,0,o.legR?.[0]??.18,o.legR?.[1]??-.1,78,78,2);
+ x.fillStyle=INK;[fl,fr].forEach(([a,b],i)=>{x.beginPath();x.ellipse(a+(i?7:-7),b+2,12,5,0,0,7);x.fill();});
+ ln(0,0,neck[0],neck[1],4.5,INK,3);
+ // arms from shoulder
+ const sh=[neck[0]*.92,neck[1]*.92+12];const hl=limb(sh[0],sh[1],o.armL?.[0]??-.35,o.armL?.[1]??.2,62,58,4);let hr;
+ if(o.reachR){const tx=(o.reachR[0]-o.x)/s,ty=(o.reachR[1]-o.y)/s,dx=tx-sh[0],dy=ty-sh[1],dd=Math.min(Math.hypot(dx,dy),118),base=Math.atan2(dx,dy),cosA=(62*62+dd*dd-58*58)/(2*62*dd),a=Math.acos(clamp(cosA,-1,1));const a1=base-a;const ex=sh[0]+Math.sin(a1)*62,ey=sh[1]+Math.cos(a1)*62;const ux=sh[0]+dx/Math.hypot(dx,dy)*dd,uy=sh[1]+dy/Math.hypot(dx,dy)*dd;ln(sh[0],sh[1],ex,ey,4.5,INK,5);ln(ex,ey,ux,uy,4.5,INK,15);hr=[ux,uy];}
+ else hr=limb(sh[0],sh[1],o.armR?.[0]??.35,o.armR?.[1]??-.2,62,58,5);
+ [hl,hr].forEach(([a,b])=>{x.beginPath();x.ellipse(a,b,8,7,0,0,7);x.fillStyle=INK;x.fill();});
+ // head
+ const hx=neck[0]+Math.sin(lean+(o.tilt||0))*42,hy=neck[1]-Math.cos(lean+(o.tilt||0))*42;circ(hx,hy,40,PAPER);face(hx,hy,o.face||'neutral',o.look||0);
+ if(o.hat==='top'){x.fillStyle=NAVY;x.fillRect(hx-30,hy-100,60,62);ln(hx-46,hy-38,hx+46,hy-38,7,NAVY,8);x.fillStyle=RED;x.fillRect(hx-30,hy-58,60,10);}
+ if(o.tag){x.save();x.translate(neck[0]*.6-(o.tag.length*19+24)-10,neck[1]*.55);x.rotate(.08);x.fillStyle=o.tagCol||'#fff3c4';x.strokeStyle=INK;x.lineWidth=3;x.beginPath();x.roundRect(-4,-22,o.tag.length*19+24,44,8);x.fill();x.stroke();hand(o.tag,8+o.tag.length*9.5,10,34,INK);x.restore();}
+ x.restore();return{hl:[o.x+hl[0]*s,o.y+hl[1]*s],hr:[o.x+hr[0]*s,o.y+hr[1]*s],head:[o.x+hx*s,o.y+hy*s]};}
+function face(cx,cy,f,look){const ex=look*8;x.fillStyle=INK;const eye=(dx,h=11)=>{x.beginPath();x.ellipse(cx+dx+ex,cy-6,5.5,h/2+.5,0,0,7);x.fill();};
+ const brow=(dx,dy,rot)=>{x.save();x.translate(cx+dx+ex,cy-22+dy);x.rotate(rot);ln(-10,0,10,0,3.5,INK,30+dx);x.restore();};
+ if(f==='shock'){eye(-13,16);eye(13,16);brow(-13,-6,.25);brow(13,-6,-.25);circ(cx+ex,cy+18,9,INK,0);}
+ else if(f==='worry'){eye(-13);eye(13);brow(-13,0,-.35);brow(13,0,.35);x.strokeStyle=INK;x.lineWidth=3.5;x.beginPath();x.arc(cx+ex,cy+26,11,Math.PI*1.15,Math.PI*1.85);x.stroke();x.fillStyle='#7fb3e6';x.beginPath();x.ellipse(cx+36,cy-14,5,9,0,0,7);x.fill();}
+ else if(f==='smug'){eye(-13,8);eye(13,8);brow(-13,-2,.2);brow(13,-4,-.1);x.strokeStyle=INK;x.lineWidth=3.5;x.beginPath();x.arc(cx+ex+4,cy+8,13,.2,Math.PI-.6);x.stroke();}
+ else if(f==='strain'){x.lineWidth=3.5;x.strokeStyle=INK;[-13,13].forEach(d=>{ln(cx+d-7+ex,cy-8,cx+d+7+ex,cy-4,3.5,INK,40+d);});brow(-13,2,.4);brow(13,2,-.4);ln(cx-12+ex,cy+18,cx+12+ex,cy+18,4,INK,44);}
+ else if(f==='point'){eye(-13);eye(13);brow(-13,-3,0);brow(13,-3,0);x.strokeStyle=INK;x.lineWidth=3.5;x.beginPath();x.arc(cx+ex,cy+10,12,.25,Math.PI-.25);x.stroke();}
+ else{eye(-13);eye(13);ln(cx-8+ex,cy+18,cx+8+ex,cy+18,3.5,INK,45);}}
+
+// ---------- props ----------
+function lever(X,Y,up,label='RATES'){x.fillStyle='#e9e4d6';x.strokeStyle=INK;x.lineWidth=4;x.beginPath();x.roundRect(X-70,Y-30,140,60,10);x.fill();x.stroke();hand(up>.6?label+' ↑':label,X,Y+14,40,up>.6?RED:INK);
+ const an=lerp(.9,-.9,up);const tx=X+Math.sin(an)*170,ty=Y-30-Math.cos(an)*170;ln(X,Y-30,tx,ty,9,INK,50);circ(tx,ty,20,RED,4);return[tx,ty];}
+function bill(X,Y,w,h,label,col='#fff3c4',rot=0){x.save();x.translate(X,Y);x.rotate(rot);x.fillStyle=col;x.strokeStyle=INK;x.lineWidth=4;x.beginPath();x.roundRect(-w/2,-h/2,w,h,8);x.fill();x.stroke();for(let i=0;i<3;i++)ln(-w/2+20,-h/2+44+i*18,w/2-20-(i==2?w*.3:0),-h/2+44+i*18,2.5,'#9a8a5a',60+i);hand(label,0,-h/2+32,Math.min(40,h*.3),RED);x.restore();}
+function dollar(X,Y,s){x.save();x.translate(X,Y);x.scale(s,s);x.fillStyle='#d9ead0';x.strokeStyle=INK;x.lineWidth=4;x.beginPath();x.roundRect(-150,-70,300,140,10);x.fill();x.stroke();circ(0,0,46,'#eef6e8',3.5,GRN);hand('$',0,24,72,GRN);hand('1',-118,-34,40,GRN);hand('1',118,56,40,GRN);x.restore();}
+function coin(X,Y,r,crack){if(crack<=0){circ(X,Y,r,'#e8e0c8');hand('PESO',X,Y+12,34,INK);return;}[-1,1].forEach(sd=>{x.save();x.translate(X+sd*crack*26,Y+crack*18);x.rotate(sd*crack*.3);x.beginPath();x.rect(sd<0?-r-6:0,-r-6,r+6,2*r+12);x.clip();circ(0,0,r,'#e8e0c8');hand('PESO',0,12,34,INK);x.restore();});}
+function stampTxt(t,a,s,X,Y,size=86){if(t<a)return;const k=spring(t-a,22,.5);x.save();x.translate(X,Y);x.rotate(-.12);x.scale(lerp(2.2,1,k),lerp(2.2,1,k));x.globalAlpha=clamp(k*1.6)*.9;x.font=`700 ${size}px Hand`;const w=x.measureText(s).width/2+24;x.strokeStyle=RED;x.lineWidth=6;x.strokeRect(-w,-size*.62,w*2,size*1.08);hand(s,0,size*.28,size,RED);x.restore();}
+function arrowUp(X,Y,h,k,col=GRN){const hh=h*ease(k);if(hh<=0)return;ln(X,Y,X+6,Y-hh,6,col,80);ln(X+6,Y-hh,X-22,Y-hh+34,6,col,81);ln(X+6,Y-hh,X+32,Y-hh+30,6,col,82);}
+function timelineChips(t){[['1982',0],['1994',6.8],['2022',9.6],['NOW',12.7]].forEach(([y,a],i)=>{const on=t>=a+VO,X=200+i*226,Y=200;x.globalAlpha=on?1:.28;x.fillStyle=on?(y=='NOW'?'#fde7a0':'#fff'):'#fff';x.strokeStyle=INK;x.lineWidth=3;x.beginPath();x.roundRect(X-88,Y-36,176,62,30);x.fill();x.stroke();hand(y,X,Y+12,46,y=='NOW'?RED:INK);x.globalAlpha=1;if(i<3)ln(X+92,Y-5,X+134,Y-5,3,'rgba(28,28,28,.35)',90+i);});}
+
+// ---------- scenes ----------
+function scene(t){const u=t-VO;
+ timelineChips(t);
+ if(u<6.8){hand('America raises rates...',W/2,360,74);underline(W/2-10,380,330,seg(u,1.2,1.8));
+  const up=ease(seg(u,1.0,2.0));const lv=lever(470,1280,up);
+  const a=figure({x:230,y:1290,s:1.45,hat:'top',tag:'USA',face:up<1?'strain':'smug',lean:-.08,reachR:lv,armL:[-.3,.2]});
+  const sw=seg(u,3.0,5.2);const bw=lerp(140,300,ease(sw));
+  figure({x:800,y:1290,s:1.45,tag:'MEXICO',face:u>4?'worry':'neutral',lean:.1+.06*Math.sin(u*9)*(u>4),armL:[-1.2,.5],armR:[1.2,-.5],look:-1});
+  if(u>2.6)bill(800,820,bw,bw*.75,'DEBT $',undefined,.05);
+  if(u>4.6){hand("can't pay!",560,1010,66,RED);}}
+ else if(u<9.6){const v=u-6.8;hand('1994. Again.',W/2,360,80);const up=ease(seg(v,.3,1.1));const lv=lever(470,1280,up);
+  figure({x:230,y:1290,s:1.45,hat:'top',tag:'USA',face:'smug',reachR:lv});
+  const cr=ease(seg(v,1.4,2.1));const f=figure({x:800,y:1290,s:1.45,tag:'MEXICO',face:cr>0?'shock':'worry',armR:[2.6,-.6],armL:[-1.0,.4],look:1});
+  coin(f.hr[0]-10,f.hr[1]-70,72,cr);}
+ else if(u<12.7){const v=u-9.6;hand('2022.',W/2,360,86);const up=ease(seg(v,.2,.9));const lv=lever(470,1280,up);
+  figure({x:230,y:1290,s:1.45,hat:'top',tag:'USA',face:'smug',reachR:lv});
+  const drop=ease(seg(v,1.0,1.6));const f=figure({x:800,y:1290,s:1.45,tag:'GHANA',face:'shock',armL:[lerp(-1.4,-.3,drop),.3],armR:[lerp(1.4,.3,drop),-.3]});
+  bill(lerp(900,960,drop),lerp(1000,1420,drop),170,125,'DEBT $','#fff3c4',drop*.6);stampTxt(v,1.7,'DEFAULT',W/2+60,640,80);}
+ else if(u<17.5){const v=u-12.7;hand('Now...',W/2,360,86);const reach=ease(seg(v,.2,1.4));lever(470,1280,0);
+  const a=figure({x:230,y:1290,s:1.45,hat:'top',tag:'USA',face:'point',lean:.12*reach,armR:[lerp(.3,1.9,reach),lerp(-.2,.4,reach)]});
+  const g=ease(seg(v,1.8,3.6));dollar(760,820,lerp(.6,1.35,g));arrowUp(990,1000,lerp(0,360,g),seg(v,1.8,3.6));
+  if(v>3.2){hand('20-month high',760,1120,70,GRN);underline(760,1138,380,seg(v,3.4,4));}}
+ else if(u<21.4){const v=u-17.5;hand('Someone else',W/2,330,82);hand('pays the bill.',W/2,420,82,RED);underline(W/2,440,420,seg(v,2.5,3.1));
+  const throwK=ease(seg(v,.4,1.1)),fly=ease(seg(v,1.0,2.3));
+  figure({x:230,y:1290,s:1.45,hat:'top',tag:'USA',face:'smug',armR:[lerp(1.2,2.6,throwK),-.4],lean:-.05});
+  const c=figure({x:830,y:1290,s:1.45,tag:'THE WORLD',tagCol:'#e6f0ff',face:fly>.9?'shock':'neutral',armL:[lerp(-.4,-2.4,fly),.3],armR:[lerp(.4,-2.2,fly),-.3],look:-1});
+  const bx=lerp(360,c.hl[0]+30,fly),by=lerp(860,c.hl[1]-20,fly)-Math.sin(fly*Math.PI)*260;bill(bx,by,150,190,'BILL','#fff',fly*6.28*1.5);}
+ else{const v=u-21.4;hand('Full story',W/2,420,96);hand('linked below',W/2,520,96,RED);
+  const b=8*Math.sin(v*6),AX=W/2+220;figure({x:W/2-80,y:1300,s:1.55,face:'point',reachR:[AX-40,1250+b],armL:[-.3,.2]});ln(AX,1180+b,AX,1400+b,7,RED,95);ln(AX,1400+b,AX-34,1360+b,7,RED,96);ln(AX,1400+b,AX+34,1360+b,7,RED,97);}}
+
+// ---------- captions (Hand, single line, timed to George) ----------
+const AL=__ALIGN__;const WORDS=[];{let cur='',st=null;AL.characters.forEach((ch,i)=>{if(ch===' '){if(cur)WORDS.push({w:cur,t:st+VO});cur='';st=null;}else{if(st===null)st=AL.character_start_times_seconds[i];cur+=ch;}});if(cur)WORDS.push({w:cur,t:st+VO});}
+const CH=[];{let cu=[];WORDS.forEach((o,i)=>{cu.push(o);const nx=WORDS[i+1];if(cu.length>=5||!nx||/[.,]$/.test(o.w)){CH.push(cu);cu=[];}});}
+function captions(t){let ci=-1;CH.forEach((c,i)=>{if(t>=c[0].t)ci=i;});if(ci<0)return;const c=CH[ci];if(t>c[c.length-1].t+1.6)return;const s=c.map(o=>o.w).join(' ').replace('nineteen eighty-two','1982').replace('nineteen ninety-four','1994').replace('twenty twenty-two','2022');x.font='600 60px Hand';const w=Math.min(1,960/x.measureText(s).width);x.save();x.translate(W/2,1620);x.scale(w,w);hand(s,0,0,60,'#333',  'center',600);x.restore();}
+
+window.seek=function(t){t=((t%D)+D)%D;BOIL=Math.floor(t*8);x.setTransform(1,0,0,1,0,0);x.fillStyle=PAPER;x.fillRect(0,0,W,H);
+ x.strokeStyle='rgba(76,90,105,.036)';x.lineWidth=1.2;for(let i=0;i<=W;i+=96){x.beginPath();x.moveTo(i,0);x.lineTo(i,1500);x.stroke();}for(let j=0;j<=1500;j+=96){x.beginPath();x.moveTo(0,j);x.lineTo(W,j);x.stroke();}
+ scene(t);captions(t);x.font='600 34px Hand';x.fillStyle='rgba(40,40,40,.45)';x.textAlign='center';x.fillText('The Efficiency Edge',W/2,1780);
+ if(t<.2){x.fillStyle=`rgba(253,253,252,${1-t/.2})`;x.fillRect(0,0,W,H);}if(t>D-.5){x.fillStyle=`rgba(253,253,252,${seg(t,D-.5,D)})`;x.fillRect(0,0,W,H);}};
+document.fonts.load('700 40px Hand').then(()=>document.fonts.load('600 40px Hand')).then(()=>{window.VIDEO=VID;});
+
+// ---------- sound: voice on top, light tense pulse, action SFX ----------
+const VOB='__VO__';
+window.buildAudio=async function(ctx,stem='all'){const sr=ctx.sampleRate,out=ctx.createGain();out.connect(ctx.destination);
+ if(stem!=='bg'){const b=await ctx.decodeAudioData(Uint8Array.from(atob(VOB),c=>c.charCodeAt(0)).buffer);const s=ctx.createBufferSource();s.buffer=b;s.connect(out);s.start(VO);}if(stem==='voice')return;
+ const bus=ctx.createGain();bus.gain.value=.42;bus.connect(out);const R=rng(5),nb=ctx.createBuffer(1,sr*2,sr),nd=nb.getChannelData(0);for(let i=0;i<nd.length;i++)nd[i]=R()*2-1;
+ const beat=60/96;for(let t=.3;t<D-.8;t+=beat/2){const o=ctx.createOscillator(),g=ctx.createGain(),lp=ctx.createBiquadFilter();o.type='sawtooth';o.frequency.value=t>12.8?46.2:41.2;lp.type='lowpass';lp.frequency.value=220;g.gain.setValueAtTime(0,t);g.gain.linearRampToValueAtTime(.12,t+.01);g.gain.exponentialRampToValueAtTime(.001,t+beat*.42);o.connect(lp).connect(g).connect(bus);o.start(t);o.stop(t+beat*.5);}
+ for(let t=.3;t<D-.8;t+=beat){const s=ctx.createBufferSource(),hp=ctx.createBiquadFilter(),g=ctx.createGain();s.buffer=nb;hp.type='highpass';hp.frequency.value=6500;g.gain.setValueAtTime(.05,t);g.gain.exponentialRampToValueAtTime(.001,t+.04);s.connect(hp).connect(g).connect(bus);s.start(t,(t*.3)%1.5);s.stop(t+.05);}
+ const nz=(t,d,p,type,f1,f2)=>{const s=ctx.createBufferSource(),fl=ctx.createBiquadFilter(),g=ctx.createGain();s.buffer=nb;fl.type=type;fl.frequency.setValueAtTime(f1,t);if(f2)fl.frequency.exponentialRampToValueAtTime(f2,t+d);g.gain.setValueAtTime(p,t);g.gain.exponentialRampToValueAtTime(.001,t+d);s.connect(fl).connect(g).connect(bus);s.start(t,(t*.7)%1.5);s.stop(t+d+.05);};
+ const osc=(f,t,d,p,f2,ty='sine')=>{const o=ctx.createOscillator(),g=ctx.createGain();o.type=ty;o.frequency.setValueAtTime(f,t);if(f2)o.frequency.exponentialRampToValueAtTime(f2,t+d);g.gain.setValueAtTime(p,t);g.gain.exponentialRampToValueAtTime(.001,t+d);o.connect(g).connect(bus);o.start(t);o.stop(t+d+.05);};
+ const clunk=t=>{osc(110,t,.25,.5,55);nz(t,.08,.3,'bandpass',1800);};
+ clunk(VO+2.0);nz(VO+3.0,.5,.12,'bandpass',600,2400);clunk(VO+6.8+1.1);nz(VO+6.8+1.5,.2,.4,'highpass',3000);osc(900,VO+6.8+1.5,.12,.15,300,'triangle');
+ clunk(VO+9.6+.9);osc(70,VO+9.6+1.7,.6,.6,35);nz(VO+9.6+1.7,.15,.4,'lowpass',2000);nz(VO+9.6+1.5,.3,.2,'bandpass',400,200);
+ for(let i=0;i<8;i++)osc(400+i*60,VO+12.7+1.8+i*.2,.15,.08,null,'triangle');nz(VO+17.5+.9,.5,.2,'bandpass',300,3000);nz(VO+17.5+2.3,.12,.35,'bandpass',1200);osc(600,VO+21.4,.15,.15,1200);};
+</script></body></html>

@@ -50,3 +50,6 @@ videos/*/*.mp4
 **/thumb-small.png
 **/fi/
 **/fh/
+videos/*/stickman/*.mp4
+videos/*/stickman/short.html
+videos/*/stickman/c*.png
