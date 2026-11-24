@@ -33,3 +33,10 @@ shorts/*/short.mp4
 **/phil-test-v4.mp4
 **/contact.png
 **/m58.png
+**/*.pcm
+**/wide.html
+**/vert.html
+**/c*.png
+**/*_raw*.mp4
+**/render_*.log
+videos/*/*.mp4

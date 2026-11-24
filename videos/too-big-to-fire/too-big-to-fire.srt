@@ -1,0 +1,79 @@
+1
+00:00:00,000 --> 00:00:02,906
+On November seventeenth, Nvidia's board said it would not
+
+2
+00:00:02,926 --> 00:00:04,735
+bring Jensen Huang back.
+
+3
+00:00:04,946 --> 00:00:08,680
+Six days later, it voted unanimously to reinstate him.
+
+4
+00:00:08,700 --> 00:00:10,057
+What changed?
+
+5
+00:00:10,198 --> 00:00:12,483
+President Trump says he called Huang,
+
+6
+00:00:12,508 --> 00:00:14,090
+then convinced the board.
+
+7
+00:00:14,110 --> 00:00:17,074
+Why would a president care about one CEO?
+
+8
+00:00:17,094 --> 00:00:20,250
+Because Nvidia is worth around four trillion dollars.
+
+9
+00:00:20,554 --> 00:00:22,751
+That's more than the yearly output of all but
+
+10
+00:00:22,771 --> 00:00:24,418
+a handful of countries.
+
+11
+00:00:24,559 --> 00:00:26,037
+We've seen this before.
+
+12
+00:00:26,057 --> 00:00:28,765
+In 1907, when Wall Street panicked,
+
+13
+00:00:28,785 --> 00:00:29,183
+J.P.
+
+14
+00:00:29,203 --> 00:00:32,062
+Morgan locked bankers in his library until they agreed
+
+15
+00:00:32,082 --> 00:00:33,485
+to save the system.
+
+16
+00:00:33,696 --> 00:00:37,716
+In 2008, Washington set aside seven hundred billion dollars
+
+17
+00:00:37,736 --> 00:00:40,532
+to rescue banks it called too big to fail.
+
+18
+00:00:40,743 --> 00:00:42,790
+Now the question isn't whether a company is too
+
+19
+00:00:42,810 --> 00:00:43,870
+big to fail.
+
+20
+00:00:43,890 --> 00:00:46,523
+It's whether its leader is too big to fire.
