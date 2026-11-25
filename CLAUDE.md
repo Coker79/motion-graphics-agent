@@ -3,7 +3,8 @@
 Start every video request with the `motion-graphics` skill and follow its **"Channel defaults — LOCKED"** section exactly.
 
 Locked essentials (do not deviate unless the user explicitly asks):
-- **Every video (long and Short) opens with the reusable Phil intro clip** (`assets/phil/phil-intro.mp4`); **George narrates everything after it**.
+- **Long videos open with the reusable Phil intro clip** (`assets/phil/phil-intro.mp4`); George narrates everything after it.
+- **Shorts (from 25 Nov 2026): NO Phil intro.** Open on the strongest hook in the first second (George + moving scene), big bold pop captions (white, yellow active word, green numbers), new visual every 1–2 s, 1.4 s Phil end card "Follow for the next case file". Convert pages with `tools/hookfirst.py`. Descriptions open with a curiosity question ("Did you know…?"), sources + disclaimer at the bottom.
 - **Never ask the user to generate new Phil/avatar clips.**
 - **Shorts-first phase (from 24 Nov 2026):** post one 9:16 Short (30–45 s) **every day** at 3 pm NY to rebuild traction. Long 16:9 videos are paused until the user says to resume (then: long first, Short 1–2 days later, linked in Studio). Shorts end on "Follow for the next case file", not "Full story linked below".
 - Everything is rendered here (code-drawn). George's narration is the only external piece (voice audio).
