@@ -1,0 +1,72 @@
+1
+00:00:00,150 --> 00:00:00,939
+This year,
+
+2
+00:00:00,939 --> 00:00:02,681
+companies blamed AI for more than
+
+3
+00:00:02,681 --> 00:00:04,330
+a hundred and twenty thousand job
+
+4
+00:00:04,330 --> 00:00:05,744
+cuts in America.
+
+5
+00:00:05,885 --> 00:00:08,136
+Here's the problem nobody talks about:
+
+6
+00:00:08,161 --> 00:00:09,659
+around two-thirds of the U.S.
+
+7
+00:00:09,659 --> 00:00:12,095
+economy is people spending money.
+
+8
+00:00:12,236 --> 00:00:13,490
+In 1914,
+
+9
+00:00:13,490 --> 00:00:15,510
+Henry Ford doubled his workers' pay
+
+10
+00:00:15,510 --> 00:00:16,973
+to five dollars a day,
+
+11
+00:00:16,973 --> 00:00:18,528
+and they became customers for his
+
+12
+00:00:18,528 --> 00:00:19,467
+cars.
+
+13
+00:00:19,864 --> 00:00:21,199
+AI flips that.
+
+14
+00:00:21,199 --> 00:00:22,220
+It does the work,
+
+15
+00:00:22,220 --> 00:00:23,567
+but it doesn't get a paycheck,
+
+16
+00:00:23,567 --> 00:00:25,005
+and it doesn't shop.
+
+17
+00:00:25,088 --> 00:00:26,888
+So if AI takes the jobs,
+
+18
+00:00:26,888 --> 00:00:28,778
+who's left to buy anything?
+
