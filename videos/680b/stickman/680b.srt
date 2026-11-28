@@ -1,0 +1,80 @@
+1
+00:00:00,150 --> 00:00:01,601
+Big Tech has borrowed more than
+
+2
+00:00:01,601 --> 00:00:03,343
+six hundred and eighty billion dollars
+
+3
+00:00:03,343 --> 00:00:05,177
+this year to build AI data
+
+4
+00:00:05,177 --> 00:00:06,058
+centers.
+
+5
+00:00:06,141 --> 00:00:07,253
+Not cash.
+
+6
+00:00:07,337 --> 00:00:08,171
+Debt.
+
+7
+00:00:08,683 --> 00:00:09,798
+In the 1840s,
+
+8
+00:00:09,798 --> 00:00:11,098
+Britain did the same thing with
+
+9
+00:00:11,098 --> 00:00:12,073
+railways.
+
+10
+00:00:12,073 --> 00:00:13,467
+Investors poured in,
+
+11
+00:00:13,467 --> 00:00:15,185
+tracks were laid faster than anyone
+
+12
+00:00:15,185 --> 00:00:16,126
+could use them,
+
+13
+00:00:16,126 --> 00:00:17,391
+and when the bubble burst,
+
+14
+00:00:17,391 --> 00:00:19,096
+thousands were wiped out.
+
+15
+00:00:19,237 --> 00:00:20,491
+The tracks stayed.
+
+16
+00:00:20,491 --> 00:00:21,931
+The investors didn't.
+
+17
+00:00:21,931 --> 00:00:23,788
+So if AI demand doesn't arrive
+
+18
+00:00:23,788 --> 00:00:24,671
+fast enough,
+
+19
+00:00:24,671 --> 00:00:26,192
+who's left holding six hundred and
+
+20
+00:00:26,192 --> 00:00:28,268
+eighty billion dollars of debt?
+
