@@ -43,6 +43,7 @@ These rules override anything older in this repo. Do not deviate unless the user
 
 ### 2. Formats and length (LOCKED)
 - Every story = one **16:9 long video (default 2.5–3 min; 2–3 fine; longer only if the story needs it)** + one **9:16 Short (25–50 s)** made from the same story.
+- **NO ElevenLabs, ever.** All narration is generated locally here (Kokoro `bm_george` via kokoro-onnx). Never call api.elevenlabs.io or mention its credits.
 - **Shorts are hook-first: no Phil intro** (Phil only as a 1.4 s end card), bold pop captions, curiosity-question descriptions — see CLAUDE.md; use `tools/hookfirst.py`.
 - **Current phase: Shorts first, one per day at 3 pm NY (30–45 s); long videos paused until the user resumes them.** End card: "Follow for the next case file".
 - When long videos resume: long video goes live first; the Short 1–2 days later. The user links the Short to the long video in Studio ("Related video", Studio-only); add "Full story: <link>" to the Short's description via `tools/yt.py update`.
